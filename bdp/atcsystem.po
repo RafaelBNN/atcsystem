@@ -1,0 +1,24 @@
+THEORY ProofList IS
+_f(1) & _f(2) & _f(3) & Initialisation.5,(_f(4) => _f(9));
+_f(1) & _f(2) & _f(3) & Initialisation.4,(_f(4) => _f(8));
+_f(1) & _f(2) & _f(3) & Initialisation.3,(_f(4) => _f(7));
+_f(1) & _f(2) & _f(3) & Initialisation.2,(_f(4) => _f(6));
+_f(1) & _f(2) & _f(3) & Initialisation.1,(_f(4) => _f(5))
+END
+&
+THEORY Formulas IS
+((NAT) = (((0) .. (2147483647)))) & ((INT) = (((-2147483647) .. (2147483647))));
+((1..4)*{DIRECTION}): FIN(NATURAL*{DIRECTION})& not(((1..4)*{DIRECTION}) = {}) & ((1..2)*{STATE}): FIN(NATURAL*{STATE})& not(((1..2)*{STATE}) = {}) & AIRCRAFTS: FIN(INTEGER) & not(AIRCRAFTS = {}) & ((mapw) = (3)) & ((maph) = (3)) & ((aircraftid) : (NAT)) & ((speed_limit) = (2)) & ((altitude_limit) : (NAT)) & ((source) : (struct(xx$8888 >> ((0) .. (3)),yy$8888 >> ((0) .. (3))))) & ((destination) : ((struct(xx$8888 >> ((0) .. (3)),yy$8888 >> ((0) .. (3))) - ({source}))));
+not(((source) = (destination)));
+"Invariant is preserved";
+((({((0) |-> ((((0) .. (3)) * ({(1|->STATE)}))))}\/{((1) |-> ((((0) .. (3)) * ({(1|->STATE)}))))}\/{((2) |-> ((((0) .. (3)) * ({(1|->STATE)}))))}\/{((3) |-> ((((0) .. (3)) * ({(1|->STATE)}))))})) : (((((0) .. (3))) --> (((((0) .. (3))) --> (((1..2)*{STATE})))))));
+((1) : ((NAT-{0})));
+(1 <= speed_limit);
+((0) : (NAT));
+(0 <= altitude_limit)
+END
+&
+THEORY EnumerateX IS
+DIRECTION == {NN,SS,EE,WW};
+STATE == {CLEAR,OCCUPIED}
+END

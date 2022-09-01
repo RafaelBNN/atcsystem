@@ -1,7 +1,3 @@
-/* statictopology
- * Author: rbnn
- * Creation date: 22/08/22
- */
 MACHINE
     topology
     

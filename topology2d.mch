@@ -1,7 +1,3 @@
-/* topology2d
- * Author: Rafael
- * Creation date: 01/09/2022
- */
 MACHINE
     topology2d
     

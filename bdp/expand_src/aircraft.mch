@@ -7,7 +7,7 @@ MACHINE
 
 SEES
 
-    topology
+    topology , topology2d
 
 SETS
 

@@ -8,6 +8,12 @@
         <component_file path="C:/Users/Rafael/Desktop/2022.1/sistemas-inteligentes/atcsystem" name="aircraft" suffix="mch" user="Rafael">
             <component name="aircraft" type="specification" />
         </component_file>
+        <component_file path="C:/Users/Rafael/Desktop/2022.1/sistemas-inteligentes/atcsystem" name="atcsystem" suffix="mch" user="Rafael">
+            <component name="atcsystem" type="specification" />
+        </component_file>
+        <component_file path="C:/Users/Rafael/Desktop/2022.1/sistemas-inteligentes/atcsystem" name="atcsystem_ctx" suffix="mch" user="Rafael">
+            <component name="atcsystem_ctx" type="specification" />
+        </component_file>
         <component_file path="C:/Users/Rafael/Desktop/2022.1/sistemas-inteligentes/atcsystem" name="topology" suffix="mch" user="Rafael">
             <component name="topology" type="specification" />
         </component_file>
