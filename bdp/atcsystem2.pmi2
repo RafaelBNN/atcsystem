@@ -1,54 +1,16 @@
 THEORY BalanceX IS
-atcsystem2,10,0,0,4,0,0,0;
-Initialisation,1,0,0,0,0,0,0;
-Operation_takeoff_from,2,0,0,1,0,0,0;
-WellDefinednessPrecondition_takeoff_from,5,0,0,2,0,0,0;
-WellDefinedness_takeoff_from,2,0,0,1,0,0,0
+atcsystem2,0,0,0,0,0,0,0
 END
 &
-THEORY ProofState IS
-Proved(0);
-Unproved;
-Unproved;
-Proved(0);
-Unproved;
-Proved(0);
-Unproved;
-Proved(0);
-Unproved;
-Unproved
+THEORY ProofState
 END
 &
-THEORY MethodList IS
-pr;
-?;
-?;
-pr;
-?;
-pr;
-?;
-pr;
-?;
-?
+THEORY MethodList
 END
 &
-THEORY PassList IS
-Force(0),?;
-Force(0),(?; 0);
-Force(0),(?; 0);
-Force(0),?;
-Force(0),(?; 0);
-Force(0),?;
-Force(0),(?; 0);
-Force(0),?;
-Force(0),(?; 0);
-Force(0),(?; 0)
+THEORY PassList
 END
 &
 THEORY Status IS
-atcsystem2,10,0,4,0,0,0;
-Initialisation,1,0,0,0,0,0;
-Operation_takeoff_from,2,0,1,0,0,0;
-WellDefinednessPrecondition_takeoff_from,5,0,2,0,0,0;
-WellDefinedness_takeoff_from,2,0,1,0,0,0
+atcsystem2,0,0,0,0,0,0
 END

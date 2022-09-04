@@ -12,6 +12,7 @@ VARIABLES
     ids,
     spdlmt,
     altlmt,
+    currpos,
     hdng,
     currspd,
     curralt
@@ -20,21 +21,27 @@ INVARIANT
     
     zone_states : mapa --> STATE
     
-    // talvez seja dificil utilizar struct porque nas funcoes de speedup ou change_direction
-    // fica complexo o modo de acessar uma aeronave especifica sem ter que passar
-    // toda ela como argumento da funcao
+    // talvez seja dificil utilizar struct porque, nas funcoes de speedup ou change_direction, por exemplo, torna-se complexo acessar uma aeronave especifica sem ter que passar toda ela como argumento da funcao
     
-    & ids : AIRCRAFT +-> NAT
+    & ids : AIRCRAFT >+> NAT
     & spdlmt : AIRCRAFT +-> NAT1
     & altlmt : AIRCRAFT +-> NAT1
+    & currpos : AIRCRAFT +-> struct(posx : (0..3), posy : (0..3))
     & hdng : AIRCRAFT +-> DIRECTION
     & currspd : AIRCRAFT +-> NAT1
     & curralt : AIRCRAFT +-> NAT1
+    
     & curr_aircrafts : NAT
+    
+    & card(ids) = curr_aircrafts
+    & card(spdlmt) = curr_aircrafts
+    & card(altlmt) = curr_aircrafts
+    & card(hdng) = curr_aircrafts
+    & card(currspd) = curr_aircrafts
+    & card(curralt) = curr_aircrafts
     
 INITIALISATION
     
-//    zone_states := {0|->(0..3)*{CLEAR}, 1|->(0..3)*{CLEAR}, 2|->(0..3)*{CLEAR}, 3|->(0..3)*{CLEAR}}
     zone_states := {
         (0,0) |-> CLEAR, (0,1) |-> CLEAR, (0,2) |-> CLEAR, (0,3) |-> CLEAR,
         (1,0) |-> CLEAR, (1,1) |-> CLEAR, (1,2) |-> CLEAR, (1,3) |-> CLEAR,
@@ -45,52 +52,53 @@ INITIALISATION
     || ids := {}
     || spdlmt := {}
     || altlmt := {}
+    || currpos := {}
     || hdng := {}
     || currspd := {}
     || curralt := {}
     
 OPERATIONS
     
-    takeoff_from(pp) =
+    takeoff_from(aa, pp) =
     PRE
-        pp : airport
+        aa : AIRCRAFT
+        & pp : airport
         & zone_states(pp'xx, pp'yy) = CLEAR
-        & cur_aircrafts < capacity
+        & curr_aircrafts < capacity
     THEN
-        aircraft := aircraft \/
-        {rec(
-            idd : 0,
-            speed_limit : 3,
-            altitude_limit : 3,
-            heading : NN,
-            current_speed : 1,
-            current_altitude : 1
-        )}
+        ids := ids \/ {aa |-> curr_aircrafts + 1}
+        || spdlmt := spdlmt \/ {aa |-> 1}
+        || altlmt := altlmt \/ {aa |-> 1}
+        || hdng := hdng \/ {aa |-> NN}
+        || currspd := currspd \/ {aa |-> 3}
+        || curralt := curralt \/ {aa |-> 3}
+        || curr_aircrafts := curr_aircrafts + 1
         || zone_states(pp'xx, pp'yy) := OCCUPIED
     END;
     
-    change_direction(aa, hh) =
+    change_direction(ii, hh) =
     PRE
-        aa : aircraft
-        & hh : DIRECTION - {aa'heading}
+        ii : ran(ids)
+        & hh : DIRECTION - {hdng(ids~(ii))}
     THEN
-        aa'heading := hh
+        hdng(ids~(ii)) := hh
     END;
     
-    speedup(aa) =
+    speedup(ii) =
     PRE
-        aa : aircraft
-        & aa'current_speed < aa'speed_limit
+        ii : ran(ids)
+        & currspd(ids~(ii)) < (spdlmt(ids~(ii)))
     THEN
-        aa'current_speed := aa'current_speed + 1
+        currspd(ids~(ii)) := currspd(ids~(ii)) + 1
     END;
     
-    slowdown(aa) =
+    slowdown(ii) =
     PRE
-        aa : aircraft
-        & aa'current_speed < 1
+        ii : ran(ids)
+        & currspd(ids~(ii)) < 1
     THEN
-        aa'current_speed := aa'current_speed - 1
-    END
+        currspd(ids~(ii)) := currspd(ids~(ii)) - 1
+    END  
+    
 
 END

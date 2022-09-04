@@ -1,0 +1,4 @@
+MACHINE
+    aircraft
+
+END
