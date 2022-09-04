@@ -1,9 +1,5 @@
 THEORY ProofList IS
-_f(1) & _f(2) & _f(5) & _f(6) & _f(7) & _f(8) & WellDefinedness_takeoff_from.2,(_f(17) => _f(13));
-_f(1) & _f(2) & _f(5) & _f(6) & _f(7) & _f(8) & WellDefinedness_takeoff_from.1,(_f(17) => _f(12));
-_f(1) & _f(2) & _f(5) & WellDefinednessPrecondition_takeoff_from.5,(_f(6) & _f(7) & _f(11) => _f(16));
-_f(1) & _f(2) & _f(5) & WellDefinednessPrecondition_takeoff_from.4,(_f(6) & _f(11) => _f(15));
-_f(1) & _f(2) & _f(5) & WellDefinednessPrecondition_takeoff_from.3,(_f(6) & _f(11) => _f(14));
+_f(1) & _f(2) & _f(5) & WellDefinednessPrecondition_takeoff_from.3,(_f(6) & _f(7) & _f(11) => _f(14));
 _f(1) & _f(2) & _f(5) & WellDefinednessPrecondition_takeoff_from.2,(_f(6) & _f(11) => _f(13));
 _f(1) & _f(2) & _f(5) & WellDefinednessPrecondition_takeoff_from.1,(_f(6) & _f(11) => _f(12));
 _f(1) & _f(2) & _f(5) & _f(6) & _f(7) & _f(8) & Operation_takeoff_from.2,(_f(3) => _f(10));
@@ -13,22 +9,19 @@ END
 &
 THEORY Formulas IS
 ((NAT) = (((0) .. (2147483647)))) & ((INT) = (((-2147483647) .. (2147483647))));
-((1..4)*{DIRECTION}): FIN(NATURAL*{DIRECTION})& not(((1..4)*{DIRECTION}) = {}) & ((1..2)*{STATE}): FIN(NATURAL*{STATE})& not(((1..2)*{STATE}) = {}) & ((capacity) : ((NAT-{0}))) & ((mapw) = (3)) & ((maph) = (3)) & airport : POW( struct(xx$8888 >> ((0) .. (3)),yy$8888 >> ((0) .. (3))));
+((1..4)*{DIRECTION}): FIN(NATURAL*{DIRECTION})& not(((1..4)*{DIRECTION}) = {}) & ((1..2)*{STATE}): FIN(NATURAL*{STATE})& not(((1..2)*{STATE}) = {}) & AIRCRAFT: FIN(INTEGER) & not(AIRCRAFT = {}) & ((capacity) : ((NAT-{0}))) & ((mapw) = (3)) & ((maph) = (3)) & ((mapa) = (struct(xx$8888 >> ((0) .. (mapw)),yy$8888 >> ((0) .. (maph))))) & airport : POW( mapa);
 "Invariant is preserved";
-((({((0) |-> ((((0) .. (3)) * ({(1|->STATE)}))))}\/{((1) |-> ((((0) .. (3)) * ({(1|->STATE)}))))}\/{((2) |-> ((((0) .. (3)) * ({(1|->STATE)}))))}\/{((3) |-> ((((0) .. (3)) * ({(1|->STATE)}))))})) : (((((0) .. (3))) --> (((((0) .. (3))) --> (((1..2)*{STATE})))))));
-zone_states : ((0) .. (3)) +-> ((((0) .. (3))) --> (((1..2)*{STATE}))) & dom(zone_states) = ((0) .. (3)) & ((zone_states) : (((((0) .. (3))) --> (((((0) .. (3))) --> (((1..2)*{STATE}))))))) & aircraft : POW( struct(altitude_limit$8888 >> (NAT-{0}),current_altitude$8888 >> (NAT-{0}),current_speed$8888 >> (NAT-{0}),heading$8888 >> ((1..4)*{DIRECTION}),idd$8888 >> NAT,speed_limit$8888 >> (NAT-{0})));
+((({((rec(xx$8888 >> 0,yy$8888 >> 0)) |-> ((1|->STATE)))}\/{((rec(xx$8888 >> 0,yy$8888 >> 1)) |-> ((1|->STATE)))}\/{((rec(xx$8888 >> 0,yy$8888 >> 2)) |-> ((1|->STATE)))}\/{((rec(xx$8888 >> 0,yy$8888 >> 3)) |-> ((1|->STATE)))}\/{((rec(xx$8888 >> 1,yy$8888 >> 0)) |-> ((1|->STATE)))}\/{((rec(xx$8888 >> 1,yy$8888 >> 1)) |-> ((1|->STATE)))}\/{((rec(xx$8888 >> 1,yy$8888 >> 2)) |-> ((1|->STATE)))}\/{((rec(xx$8888 >> 1,yy$8888 >> 3)) |-> ((1|->STATE)))}\/{((rec(xx$8888 >> 2,yy$8888 >> 0)) |-> ((1|->STATE)))}\/{((rec(xx$8888 >> 2,yy$8888 >> 1)) |-> ((1|->STATE)))}\/{((rec(xx$8888 >> 2,yy$8888 >> 2)) |-> ((1|->STATE)))}\/{((rec(xx$8888 >> 2,yy$8888 >> 3)) |-> ((1|->STATE)))}\/{((rec(xx$8888 >> 3,yy$8888 >> 0)) |-> ((1|->STATE)))}\/{((rec(xx$8888 >> 3,yy$8888 >> 1)) |-> ((1|->STATE)))}\/{((rec(xx$8888 >> 3,yy$8888 >> 2)) |-> ((1|->STATE)))}\/{((rec(xx$8888 >> 3,yy$8888 >> 3)) |-> ((1|->STATE)))})) : (((mapa) --> (((1..2)*{STATE})))));
+zone_states : mapa +-> ((1..2)*{STATE}) & dom(zone_states) = mapa & ((zone_states) : (((mapa) --> (((1..2)*{STATE}))))) & aircraft : POW( struct(altitude_limit$8888 >> (NAT-{0}),current_altitude$8888 >> (NAT-{0}),current_speed$8888 >> (NAT-{0}),heading$8888 >> ((1..4)*{DIRECTION}),idd$8888 >> NAT,speed_limit$8888 >> (NAT-{0})));
 ((pp) : (airport));
-((((zone_states )((pp'xx)) )((pp'yy))) = ((1|->STATE)));
+(((zone_states )(rec(xx$8888 >> (pp'xx),yy$8888 >> (pp'yy)))) = ((1|->STATE)));
 (card(aircraft) +1 <= capacity);
-((((zone_states) <+ (({(((pp'xx)) |-> ((((zone_states )((pp'xx))) <+ (({(((pp'yy)) |-> ((2|->STATE)))})))))})))) : (((((0) .. (3))) --> (((((0) .. (3))) --> (((1..2)*{STATE})))))));
+((((zone_states) <+ (({((rec(xx$8888 >> (pp'xx),yy$8888 >> (pp'yy))) |-> ((2|->STATE)))})))) : (((mapa) --> (((1..2)*{STATE})))));
 ((aircraft) \/ (({rec(altitude_limit$8888 >> 3,current_altitude$8888 >> 1,current_speed$8888 >> 1,heading$8888 >> (1|->DIRECTION),idd$8888 >> 0,speed_limit$8888 >> 3)}))) : POW( struct(altitude_limit$8888 >> (NAT-{0}),current_altitude$8888 >> (NAT-{0}),current_speed$8888 >> (NAT-{0}),heading$8888 >> ((1..4)*{DIRECTION}),idd$8888 >> NAT,speed_limit$8888 >> (NAT-{0})));
 "Operation precondition is well defined";
-(((pp'xx)) : (dom(zone_states)));
+((rec(xx$8888 >> (pp'xx),yy$8888 >> (pp'yy))) : (dom(zone_states)));
 ((zone_states) : (((dom(zone_states)) +-> (ran(zone_states)))));
-(((pp'yy)) : (dom((zone_states )((pp'xx)))));
-(((zone_states )((pp'xx))) : (((dom((zone_states )((pp'xx)))) +-> (ran((zone_states )((pp'xx)))))));
-((aircraft) : (FIN(aircraft)));
-"Operation is well defined"
+((aircraft) : (FIN(aircraft)))
 END
 &
 THEORY EnumerateX IS

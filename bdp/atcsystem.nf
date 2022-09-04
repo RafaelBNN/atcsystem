@@ -57,7 +57,7 @@ THEORY ListInvariantX IS
   Expanded_List_Invariant(Machine(atcsystem))==(btrue);
   Abstract_List_Invariant(Machine(atcsystem))==(btrue);
   Context_List_Invariant(Machine(atcsystem))==(btrue);
-  List_Invariant(Machine(atcsystem))==(zone_states: 0..3 --> (0..3 --> STATE) & aircraft <: struct(idd>>NAT,speed_limit>>NAT1,altitude_limit>>NAT1,heading>>DIRECTION,current_speed>>NAT1,current_altitude>>NAT1))
+  List_Invariant(Machine(atcsystem))==(zone_states: mapa --> STATE & aircraft <: struct(idd>>NAT,speed_limit>>NAT1,altitude_limit>>NAT1,heading>>DIRECTION,current_speed>>NAT1,current_altitude>>NAT1))
 END
 &
 THEORY ListAssertionsX IS
@@ -76,9 +76,9 @@ THEORY ListExclusivityX IS
 END
 &
 THEORY ListInitialisationX IS
-  Expanded_List_Initialisation(Machine(atcsystem))==(zone_states,aircraft:={0|->(0..3)*{CLEAR},1|->(0..3)*{CLEAR},2|->(0..3)*{CLEAR},3|->(0..3)*{CLEAR}},{});
+  Expanded_List_Initialisation(Machine(atcsystem))==(zone_states,aircraft:={rec(xx>>0,yy>>0)|->CLEAR,rec(xx>>0,yy>>1)|->CLEAR,rec(xx>>0,yy>>2)|->CLEAR,rec(xx>>0,yy>>3)|->CLEAR,rec(xx>>1,yy>>0)|->CLEAR,rec(xx>>1,yy>>1)|->CLEAR,rec(xx>>1,yy>>2)|->CLEAR,rec(xx>>1,yy>>3)|->CLEAR,rec(xx>>2,yy>>0)|->CLEAR,rec(xx>>2,yy>>1)|->CLEAR,rec(xx>>2,yy>>2)|->CLEAR,rec(xx>>2,yy>>3)|->CLEAR,rec(xx>>3,yy>>0)|->CLEAR,rec(xx>>3,yy>>1)|->CLEAR,rec(xx>>3,yy>>2)|->CLEAR,rec(xx>>3,yy>>3)|->CLEAR},{});
   Context_List_Initialisation(Machine(atcsystem))==(skip);
-  List_Initialisation(Machine(atcsystem))==(zone_states:={0|->(0..3)*{CLEAR},1|->(0..3)*{CLEAR},2|->(0..3)*{CLEAR},3|->(0..3)*{CLEAR}} || aircraft:={})
+  List_Initialisation(Machine(atcsystem))==(zone_states:={rec(xx>>0,yy>>0)|->CLEAR,rec(xx>>0,yy>>1)|->CLEAR,rec(xx>>0,yy>>2)|->CLEAR,rec(xx>>0,yy>>3)|->CLEAR,rec(xx>>1,yy>>0)|->CLEAR,rec(xx>>1,yy>>1)|->CLEAR,rec(xx>>1,yy>>2)|->CLEAR,rec(xx>>1,yy>>3)|->CLEAR,rec(xx>>2,yy>>0)|->CLEAR,rec(xx>>2,yy>>1)|->CLEAR,rec(xx>>2,yy>>2)|->CLEAR,rec(xx>>2,yy>>3)|->CLEAR,rec(xx>>3,yy>>0)|->CLEAR,rec(xx>>3,yy>>1)|->CLEAR,rec(xx>>3,yy>>2)|->CLEAR,rec(xx>>3,yy>>3)|->CLEAR} || aircraft:={})
 END
 &
 THEORY ListParametersX IS
@@ -114,12 +114,12 @@ END
 THEORY ListOperationGuardX END
 &
 THEORY ListPreconditionX IS
-  List_Precondition(Machine(atcsystem),takeoff_from)==(pp: airport & zone_states(pp'xx)(pp'yy) = CLEAR & card(aircraft)<capacity)
+  List_Precondition(Machine(atcsystem),takeoff_from)==(pp: airport & zone_states(rec(xx>>pp'xx,yy>>pp'yy)) = CLEAR & card(aircraft)<capacity)
 END
 &
 THEORY ListSubstitutionX IS
-  Expanded_List_Substitution(Machine(atcsystem),takeoff_from)==(pp: airport & zone_states(pp'xx)(pp'yy) = CLEAR & card(aircraft)<capacity | aircraft,zone_states:=aircraft\/{rec(idd>>0,speed_limit>>3,altitude_limit>>3,heading>>NN,current_speed>>1,current_altitude>>1)},zone_states<+{pp'xx|->(zone_states(pp'xx)<+{pp'yy|->OCCUPIED})});
-  List_Substitution(Machine(atcsystem),takeoff_from)==(aircraft:=aircraft\/{rec(idd>>0,speed_limit>>3,altitude_limit>>3,heading>>NN,current_speed>>1,current_altitude>>1)} || zone_states(pp'xx)(pp'yy):=OCCUPIED)
+  Expanded_List_Substitution(Machine(atcsystem),takeoff_from)==(pp: airport & zone_states(rec(xx>>pp'xx,yy>>pp'yy)) = CLEAR & card(aircraft)<capacity | aircraft,zone_states:=aircraft\/{rec(idd>>0,speed_limit>>3,altitude_limit>>3,heading>>NN,current_speed>>1,current_altitude>>1)},zone_states<+{rec(xx>>pp'xx,yy>>pp'yy)|->OCCUPIED});
+  List_Substitution(Machine(atcsystem),takeoff_from)==(aircraft:=aircraft\/{rec(idd>>0,speed_limit>>3,altitude_limit>>3,heading>>NN,current_speed>>1,current_altitude>>1)} || zone_states(rec(xx>>pp'xx,yy>>pp'yy)):=OCCUPIED)
 END
 &
 THEORY ListConstantsX IS
@@ -131,8 +131,8 @@ END
 THEORY ListSetsX IS
   Set_Definition(Machine(atcsystem),STATE)==({CLEAR,OCCUPIED});
   Context_List_Enumerated(Machine(atcsystem))==(DIRECTION,STATE);
-  Context_List_Defered(Machine(atcsystem))==(?);
-  Context_List_Sets(Machine(atcsystem))==(DIRECTION,STATE);
+  Context_List_Defered(Machine(atcsystem))==(AIRCRAFT);
+  Context_List_Sets(Machine(atcsystem))==(DIRECTION,STATE,AIRCRAFT);
   List_Valuable_Sets(Machine(atcsystem))==(?);
   Inherited_List_Enumerated(Machine(atcsystem))==(?);
   Inherited_List_Defered(Machine(atcsystem))==(?);
@@ -152,7 +152,7 @@ END
 &
 THEORY ListPropertiesX IS
   Abstract_List_Properties(Machine(atcsystem))==(btrue);
-  Context_List_Properties(Machine(atcsystem))==(capacity: NAT1 & mapw = 3 & maph = 3 & airport <: struct(xx>>(0..3),yy>>(0..3)) & DIRECTION: FIN(INTEGER) & not(DIRECTION = {}) & STATE: FIN(INTEGER) & not(STATE = {}));
+  Context_List_Properties(Machine(atcsystem))==(capacity: NAT1 & mapw = 3 & maph = 3 & mapa = struct(xx>>(0..mapw),yy>>(0..maph)) & airport <: mapa & AIRCRAFT: FIN(INTEGER) & not(AIRCRAFT = {}) & DIRECTION: FIN(INTEGER) & not(DIRECTION = {}) & STATE: FIN(INTEGER) & not(STATE = {}));
   Inherited_List_Properties(Machine(atcsystem))==(btrue);
   List_Properties(Machine(atcsystem))==(btrue)
 END
@@ -178,19 +178,19 @@ THEORY ListOfIdsX IS
   List_Of_VisibleCst_Ids(Machine(atcsystem)) == (?);
   List_Of_VisibleVar_Ids(Machine(atcsystem)) == (? | ?);
   List_Of_Ids_SeenBNU(Machine(atcsystem)) == (?: ?);
-  List_Of_Ids(Machine(atcsystem_ctx)) == (capacity,mapw,maph,airport,DIRECTION,STATE,NN,SS,EE,WW,CLEAR,OCCUPIED | ? | ? | ? | ? | ? | ? | ? | atcsystem_ctx);
+  List_Of_Ids(Machine(atcsystem_ctx)) == (capacity,mapw,maph,mapa,airport,DIRECTION,STATE,AIRCRAFT,NN,SS,EE,WW,CLEAR,OCCUPIED | ? | ? | ? | ? | ? | ? | ? | atcsystem_ctx);
   List_Of_HiddenCst_Ids(Machine(atcsystem_ctx)) == (? | ?);
-  List_Of_VisibleCst_Ids(Machine(atcsystem_ctx)) == (capacity,mapw,maph,airport);
+  List_Of_VisibleCst_Ids(Machine(atcsystem_ctx)) == (capacity,mapw,maph,mapa,airport);
   List_Of_VisibleVar_Ids(Machine(atcsystem_ctx)) == (? | ?);
   List_Of_Ids_SeenBNU(Machine(atcsystem_ctx)) == (?: ?)
 END
 &
 THEORY VariablesEnvX IS
-  Variables(Machine(atcsystem)) == (Type(aircraft) == Mvl(SetOf(rtype((((((idd: btype(INTEGER,0,MAXINT)),speed_limit: btype(INTEGER,1,MAXINT)),altitude_limit: btype(INTEGER,1,MAXINT)),heading: etype(DIRECTION,0,3)),current_speed: btype(INTEGER,1,MAXINT)),current_altitude: btype(INTEGER,1,MAXINT))));Type(zone_states) == Mvl(SetOf(btype(INTEGER,0,3)*SetOf(btype(INTEGER,0,3)*etype(STATE,0,1)))))
+  Variables(Machine(atcsystem)) == (Type(aircraft) == Mvl(SetOf(rtype((((((idd: btype(INTEGER,0,MAXINT)),speed_limit: btype(INTEGER,1,MAXINT)),altitude_limit: btype(INTEGER,1,MAXINT)),heading: etype(DIRECTION,0,3)),current_speed: btype(INTEGER,1,MAXINT)),current_altitude: btype(INTEGER,1,MAXINT))));Type(zone_states) == Mvl(SetOf(rtype((xx: btype(INTEGER,0,mapw)),yy: btype(INTEGER,0,maph))*etype(STATE,0,1))))
 END
 &
 THEORY OperationsEnvX IS
-  Operations(Machine(atcsystem)) == (Type(takeoff_from) == Cst(No_type,rtype((xx: btype(INTEGER,0,3)),yy: btype(INTEGER,0,3))))
+  Operations(Machine(atcsystem)) == (Type(takeoff_from) == Cst(No_type,rtype((xx: btype(INTEGER,0,mapw)),yy: btype(INTEGER,0,maph))))
 END
 &
 THEORY TCIntRdX IS

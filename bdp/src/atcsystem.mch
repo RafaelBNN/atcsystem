@@ -13,7 +13,9 @@ ABSTRACT_VARIABLES
 
 INVARIANT
 
-    zone_states : ( 0 .. 3 --> ( 0 .. 3 --> STATE ) )
+    zone_states : mapa --> STATE
+
+//    zone_states : (0..3 --> (0..3 --> STATE))
 
 //    zone_states : struct(xx : (0..mapw), yy : (0..maph)) --> STATE
 
@@ -29,7 +31,26 @@ INVARIANT
 
 INITIALISATION
 
-    zone_states := { 0 |-> ( 0 .. 3 ) * { CLEAR } , 1 |-> ( 0 .. 3 ) * { CLEAR } , 2 |-> ( 0 .. 3 ) * { CLEAR } , 3 |-> ( 0 .. 3 ) * { CLEAR } } // inicializando todas as zonas como CLEAR
+    zone_states := {
+        rec ( xx : 0 , yy : 0 ) |-> CLEAR ,
+        rec ( xx : 0 , yy : 1 ) |-> CLEAR ,
+        rec ( xx : 0 , yy : 2 ) |-> CLEAR ,
+        rec ( xx : 0 , yy : 3 ) |-> CLEAR ,
+        rec ( xx : 1 , yy : 0 ) |-> CLEAR ,
+        rec ( xx : 1 , yy : 1 ) |-> CLEAR ,
+        rec ( xx : 1 , yy : 2 ) |-> CLEAR ,
+        rec ( xx : 1 , yy : 3 ) |-> CLEAR ,
+        rec ( xx : 2 , yy : 0 ) |-> CLEAR ,
+        rec ( xx : 2 , yy : 1 ) |-> CLEAR ,
+        rec ( xx : 2 , yy : 2 ) |-> CLEAR ,
+        rec ( xx : 2 , yy : 3 ) |-> CLEAR ,
+        rec ( xx : 3 , yy : 0 ) |-> CLEAR ,
+        rec ( xx : 3 , yy : 1 ) |-> CLEAR ,
+        rec ( xx : 3 , yy : 2 ) |-> CLEAR ,
+        rec ( xx : 3 , yy : 3 ) |-> CLEAR
+        }
+
+//    zone_states := {0|->(0..3)*{CLEAR}, 1|->(0..3)*{CLEAR}, 2|->(0..3)*{CLEAR}, 3|->(0..3)*{CLEAR}} // inicializando todas as zonas como CLEAR
 //    zone_states := ! (ii, jj) . { 
 //                    ii : (0..maph) & jj : (0..mapw) =>
 //                    rec(xx : ii, yy : jj) |-> CLEAR
@@ -42,7 +63,7 @@ OPERATIONS
     takeoff_from ( pp ) =
     PRE
         pp : airport
-        & zone_states ( pp ' xx ) ( pp ' yy ) = CLEAR
+        & zone_states ( rec ( xx : pp ' xx , yy : pp ' yy ) ) = CLEAR
         & card ( aircraft ) < capacity
     THEN
         aircraft := aircraft \/
@@ -55,32 +76,8 @@ OPERATIONS
             current_altitude : 1
 
         ) }
-        || zone_states ( pp ' xx ) ( pp ' yy ) := OCCUPIED
+        || zone_states ( rec ( xx : pp ' xx , yy : pp ' yy ) ) := OCCUPIED
 
-    END ;
-
-    change_direction ( aa , hh ) =
-    PRE
-        aa : aircraft
-        & hh : DIRECTION - { aa ' heading }
-    THEN
-        aa ' heading := hh
-    END ;
-
-    speedup ( aa ) =
-    PRE
-        aa : aircraft
-        & aa ' current_speed < aa ' speed_limit
-    THEN
-        aa ' current_speed := aa ' current_speed + 1
-    END ;
-
-    slowdown ( aa ) =
-    PRE
-        aa : aircraft
-        & aa ' current_speed < 1
-    THEN
-        aa ' current_speed := aa ' current_speed - 1
     END
 
 END

@@ -8,42 +8,54 @@ SEES
 VARIABLES
     
     zone_states,
-
-    aircraft
+    curr_aircrafts,
+    ids,
+    spdlmt,
+    altlmt,
+    hdng,
+    currspd,
+    curralt
     
 INVARIANT
     
-    zone_states : (0..3 --> (0..3 --> STATE))
-
-//    zone_states : struct(xx : (0..mapw), yy : (0..maph)) --> STATE
+    zone_states : mapa --> STATE
     
-    & aircraft <: struct(
-        idd : NAT,
-        speed_limit : NAT1,
-        altitude_limit : NAT1,
-        heading : DIRECTION,
-        current_speed : NAT1,
-        current_altitude : NAT1
-//        current_zone : struct(xx : (0..mapw), yy : (0..maph))
-    )
+    // talvez seja dificil utilizar struct porque nas funcoes de speedup ou change_direction
+    // fica complexo o modo de acessar uma aeronave especifica sem ter que passar
+    // toda ela como argumento da funcao
+    
+    & ids : AIRCRAFT +-> NAT
+    & spdlmt : AIRCRAFT +-> NAT1
+    & altlmt : AIRCRAFT +-> NAT1
+    & hdng : AIRCRAFT +-> DIRECTION
+    & currspd : AIRCRAFT +-> NAT1
+    & curralt : AIRCRAFT +-> NAT1
+    & curr_aircrafts : NAT
     
 INITIALISATION
     
-    zone_states := {0|->(0..3)*{CLEAR}, 1|->(0..3)*{CLEAR}, 2|->(0..3)*{CLEAR}, 3|->(0..3)*{CLEAR}} // inicializando todas as zonas como CLEAR
-//    zone_states := ! (ii, jj) . { 
-//                    ii : (0..maph) & jj : (0..mapw) =>
-//                    rec(xx : ii, yy : jj) |-> CLEAR
-//                }
-
-    || aircraft := {}
+//    zone_states := {0|->(0..3)*{CLEAR}, 1|->(0..3)*{CLEAR}, 2|->(0..3)*{CLEAR}, 3|->(0..3)*{CLEAR}}
+    zone_states := {
+        (0,0) |-> CLEAR, (0,1) |-> CLEAR, (0,2) |-> CLEAR, (0,3) |-> CLEAR,
+        (1,0) |-> CLEAR, (1,1) |-> CLEAR, (1,2) |-> CLEAR, (1,3) |-> CLEAR,
+        (2,0) |-> CLEAR, (2,1) |-> CLEAR, (2,2) |-> CLEAR, (2,3) |-> CLEAR,
+        (3,0) |-> CLEAR, (3,1) |-> CLEAR, (3,2) |-> CLEAR, (3,3) |-> CLEAR
+    }
+    || curr_aircrafts := 0
+    || ids := {}
+    || spdlmt := {}
+    || altlmt := {}
+    || hdng := {}
+    || currspd := {}
+    || curralt := {}
     
 OPERATIONS
     
     takeoff_from(pp) =
     PRE
         pp : airport
-        & zone_states(pp'xx)(pp'yy) = CLEAR
-        & card(aircraft) < capacity
+        & zone_states(pp'xx, pp'yy) = CLEAR
+        & cur_aircrafts < capacity
     THEN
         aircraft := aircraft \/
         {rec(
@@ -53,10 +65,8 @@ OPERATIONS
             heading : NN,
             current_speed : 1,
             current_altitude : 1
-//            current_zone : rec(xx : aa'xx, yy : aa'yy)
         )}
-        || zone_states(pp'xx)(pp'yy) := OCCUPIED
-    
+        || zone_states(pp'xx, pp'yy) := OCCUPIED
     END;
     
     change_direction(aa, hh) =

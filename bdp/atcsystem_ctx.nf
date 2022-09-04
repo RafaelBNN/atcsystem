@@ -110,9 +110,9 @@ THEORY ListPreconditionX END
 THEORY ListSubstitutionX END
 &
 THEORY ListConstantsX IS
-  List_Valuable_Constants(Machine(atcsystem_ctx))==(capacity,mapw,maph,airport);
+  List_Valuable_Constants(Machine(atcsystem_ctx))==(total,capacity,mapw,maph,mapa,airport);
   Inherited_List_Constants(Machine(atcsystem_ctx))==(?);
-  List_Constants(Machine(atcsystem_ctx))==(capacity,mapw,maph,airport)
+  List_Constants(Machine(atcsystem_ctx))==(total,capacity,mapw,maph,mapa,airport)
 END
 &
 THEORY ListSetsX IS
@@ -142,7 +142,7 @@ THEORY ListPropertiesX IS
   Abstract_List_Properties(Machine(atcsystem_ctx))==(btrue);
   Context_List_Properties(Machine(atcsystem_ctx))==(btrue);
   Inherited_List_Properties(Machine(atcsystem_ctx))==(btrue);
-  List_Properties(Machine(atcsystem_ctx))==(capacity: NAT1 & mapw = 3 & maph = 3 & airport <: struct(xx>>(0..3),yy>>(0..3)) & AIRCRAFT: FIN(INTEGER) & not(AIRCRAFT = {}) & DIRECTION: FIN(INTEGER) & not(DIRECTION = {}) & STATE: FIN(INTEGER) & not(STATE = {}))
+  List_Properties(Machine(atcsystem_ctx))==(total: NAT1 & capacity: NAT1 & capacity<total & card(AIRCRAFT) = total & mapw = 3 & maph = 3 & mapa = (0..maph)*(0..mapw) & airport <: struct(xx>>(0..mapw),yy>>(0..maph)) & AIRCRAFT: FIN(INTEGER) & not(AIRCRAFT = {}) & DIRECTION: FIN(INTEGER) & not(DIRECTION = {}) & STATE: FIN(INTEGER) & not(STATE = {}))
 END
 &
 THEORY ListSeenInfoX END
@@ -150,9 +150,9 @@ THEORY ListSeenInfoX END
 THEORY ListANYVarX END
 &
 THEORY ListOfIdsX IS
-  List_Of_Ids(Machine(atcsystem_ctx)) == (capacity,mapw,maph,airport,DIRECTION,STATE,AIRCRAFT,NN,SS,EE,WW,CLEAR,OCCUPIED | ? | ? | ? | ? | ? | ? | ? | atcsystem_ctx);
+  List_Of_Ids(Machine(atcsystem_ctx)) == (total,capacity,mapw,maph,mapa,airport,DIRECTION,STATE,AIRCRAFT,NN,SS,EE,WW,CLEAR,OCCUPIED | ? | ? | ? | ? | ? | ? | ? | atcsystem_ctx);
   List_Of_HiddenCst_Ids(Machine(atcsystem_ctx)) == (? | ?);
-  List_Of_VisibleCst_Ids(Machine(atcsystem_ctx)) == (capacity,mapw,maph,airport);
+  List_Of_VisibleCst_Ids(Machine(atcsystem_ctx)) == (total,capacity,mapw,maph,mapa,airport);
   List_Of_VisibleVar_Ids(Machine(atcsystem_ctx)) == (? | ?);
   List_Of_Ids_SeenBNU(Machine(atcsystem_ctx)) == (?: ?)
 END
@@ -162,7 +162,7 @@ THEORY SetsEnvX IS
 END
 &
 THEORY ConstantsEnvX IS
-  Constants(Machine(atcsystem_ctx)) == (Type(NN) == Cst(etype(DIRECTION,0,3));Type(SS) == Cst(etype(DIRECTION,0,3));Type(EE) == Cst(etype(DIRECTION,0,3));Type(WW) == Cst(etype(DIRECTION,0,3));Type(CLEAR) == Cst(etype(STATE,0,1));Type(OCCUPIED) == Cst(etype(STATE,0,1));Type(capacity) == Cst(btype(INTEGER,?,?));Type(mapw) == Cst(btype(INTEGER,?,?));Type(maph) == Cst(btype(INTEGER,?,?));Type(airport) == Cst(SetOf(rtype((xx: btype(INTEGER,0,3)),yy: btype(INTEGER,0,3)))))
+  Constants(Machine(atcsystem_ctx)) == (Type(NN) == Cst(etype(DIRECTION,0,3));Type(SS) == Cst(etype(DIRECTION,0,3));Type(EE) == Cst(etype(DIRECTION,0,3));Type(WW) == Cst(etype(DIRECTION,0,3));Type(CLEAR) == Cst(etype(STATE,0,1));Type(OCCUPIED) == Cst(etype(STATE,0,1));Type(total) == Cst(btype(INTEGER,?,?));Type(capacity) == Cst(btype(INTEGER,?,?));Type(mapw) == Cst(btype(INTEGER,?,?));Type(maph) == Cst(btype(INTEGER,?,?));Type(mapa) == Cst(SetOf(btype(INTEGER,?,?)*btype(INTEGER,?,?)));Type(airport) == Cst(SetOf(rtype((xx: btype(INTEGER,0,mapw)),yy: btype(INTEGER,0,maph)))))
 END
 &
 THEORY TCIntRdX IS

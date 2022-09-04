@@ -1,7 +1,15 @@
-THEORY ProofList
+THEORY ProofList IS
+_f(1) & _f(2) & WellDefinednessProperties.1,(_f(3) & _f(4) & _f(5) & _f(6) => _f(7))
 END
 &
-THEORY Formulas
+THEORY Formulas IS
+((NAT) = (((0) .. (2147483647)))) & ((INT) = (((-2147483647) .. (2147483647))));
+((1..4)*{DIRECTION}): FIN(NATURAL*{DIRECTION})& not(((1..4)*{DIRECTION}) = {}) & ((1..2)*{STATE}): FIN(NATURAL*{STATE})& not(((1..2)*{STATE}) = {}) & AIRCRAFT: FIN(INTEGER) & not(AIRCRAFT = {});
+((total) : ((NAT-{0})));
+((capacity) : ((NAT-{0})));
+(capacity +1 <= total);
+"Properties are well defined";
+((AIRCRAFT) : (FIN(AIRCRAFT)))
 END
 &
 THEORY EnumerateX IS
