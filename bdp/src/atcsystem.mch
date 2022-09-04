@@ -39,10 +39,10 @@ INITIALISATION
 
 OPERATIONS
 
-    takeofffrom ( aa ) =
+    takeoff_from ( pp ) =
     PRE
-        aa : airport
-        & zone_states ( aa ' xx ) ( aa ' yy ) = CLEAR
+        pp : airport
+        & zone_states ( pp ' xx ) ( pp ' yy ) = CLEAR
         & card ( aircraft ) < capacity
     THEN
         aircraft := aircraft \/
@@ -55,10 +55,32 @@ OPERATIONS
             current_altitude : 1
 
         ) }
-        || zone_states ( aa ' xx ) ( aa ' yy ) := OCCUPIED
+        || zone_states ( pp ' xx ) ( pp ' yy ) := OCCUPIED
 
+    END ;
+
+    change_direction ( aa , hh ) =
+    PRE
+        aa : aircraft
+        & hh : DIRECTION - { aa ' heading }
+    THEN
+        aa ' heading := hh
+    END ;
+
+    speedup ( aa ) =
+    PRE
+        aa : aircraft
+        & aa ' current_speed < aa ' speed_limit
+    THEN
+        aa ' current_speed := aa ' current_speed + 1
+    END ;
+
+    slowdown ( aa ) =
+    PRE
+        aa : aircraft
+        & aa ' current_speed < 1
+    THEN
+        aa ' current_speed := aa ' current_speed - 1
     END
-
-
 
 END

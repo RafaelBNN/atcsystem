@@ -1,13 +1,13 @@
 THEORY ProofList IS
-_f(1) & _f(2) & _f(5) & _f(6) & _f(7) & _f(8) & WellDefinedness_takeofffrom.2,(_f(17) => _f(13));
-_f(1) & _f(2) & _f(5) & _f(6) & _f(7) & _f(8) & WellDefinedness_takeofffrom.1,(_f(17) => _f(12));
-_f(1) & _f(2) & _f(5) & WellDefinednessPrecondition_takeofffrom.5,(_f(6) & _f(7) & _f(11) => _f(16));
-_f(1) & _f(2) & _f(5) & WellDefinednessPrecondition_takeofffrom.4,(_f(6) & _f(11) => _f(15));
-_f(1) & _f(2) & _f(5) & WellDefinednessPrecondition_takeofffrom.3,(_f(6) & _f(11) => _f(14));
-_f(1) & _f(2) & _f(5) & WellDefinednessPrecondition_takeofffrom.2,(_f(6) & _f(11) => _f(13));
-_f(1) & _f(2) & _f(5) & WellDefinednessPrecondition_takeofffrom.1,(_f(6) & _f(11) => _f(12));
-_f(1) & _f(2) & _f(5) & _f(6) & _f(7) & _f(8) & Operation_takeofffrom.2,(_f(3) => _f(10));
-_f(1) & _f(2) & _f(5) & _f(6) & _f(7) & _f(8) & Operation_takeofffrom.1,(_f(3) => _f(9));
+_f(1) & _f(2) & _f(5) & _f(6) & _f(7) & _f(8) & WellDefinedness_takeoff_from.2,(_f(17) => _f(13));
+_f(1) & _f(2) & _f(5) & _f(6) & _f(7) & _f(8) & WellDefinedness_takeoff_from.1,(_f(17) => _f(12));
+_f(1) & _f(2) & _f(5) & WellDefinednessPrecondition_takeoff_from.5,(_f(6) & _f(7) & _f(11) => _f(16));
+_f(1) & _f(2) & _f(5) & WellDefinednessPrecondition_takeoff_from.4,(_f(6) & _f(11) => _f(15));
+_f(1) & _f(2) & _f(5) & WellDefinednessPrecondition_takeoff_from.3,(_f(6) & _f(11) => _f(14));
+_f(1) & _f(2) & _f(5) & WellDefinednessPrecondition_takeoff_from.2,(_f(6) & _f(11) => _f(13));
+_f(1) & _f(2) & _f(5) & WellDefinednessPrecondition_takeoff_from.1,(_f(6) & _f(11) => _f(12));
+_f(1) & _f(2) & _f(5) & _f(6) & _f(7) & _f(8) & Operation_takeoff_from.2,(_f(3) => _f(10));
+_f(1) & _f(2) & _f(5) & _f(6) & _f(7) & _f(8) & Operation_takeoff_from.1,(_f(3) => _f(9));
 _f(1) & _f(2) & Initialisation.1,(_f(3) => _f(4))
 END
 &
@@ -17,16 +17,16 @@ THEORY Formulas IS
 "Invariant is preserved";
 ((({((0) |-> ((((0) .. (3)) * ({(1|->STATE)}))))}\/{((1) |-> ((((0) .. (3)) * ({(1|->STATE)}))))}\/{((2) |-> ((((0) .. (3)) * ({(1|->STATE)}))))}\/{((3) |-> ((((0) .. (3)) * ({(1|->STATE)}))))})) : (((((0) .. (3))) --> (((((0) .. (3))) --> (((1..2)*{STATE})))))));
 zone_states : ((0) .. (3)) +-> ((((0) .. (3))) --> (((1..2)*{STATE}))) & dom(zone_states) = ((0) .. (3)) & ((zone_states) : (((((0) .. (3))) --> (((((0) .. (3))) --> (((1..2)*{STATE}))))))) & aircraft : POW( struct(altitude_limit$8888 >> (NAT-{0}),current_altitude$8888 >> (NAT-{0}),current_speed$8888 >> (NAT-{0}),heading$8888 >> ((1..4)*{DIRECTION}),idd$8888 >> NAT,speed_limit$8888 >> (NAT-{0})));
-((aa) : (airport));
-((((zone_states )((aa'xx)) )((aa'yy))) = ((1|->STATE)));
+((pp) : (airport));
+((((zone_states )((pp'xx)) )((pp'yy))) = ((1|->STATE)));
 (card(aircraft) +1 <= capacity);
-((((zone_states) <+ (({(((aa'xx)) |-> ((((zone_states )((aa'xx))) <+ (({(((aa'yy)) |-> ((2|->STATE)))})))))})))) : (((((0) .. (3))) --> (((((0) .. (3))) --> (((1..2)*{STATE})))))));
+((((zone_states) <+ (({(((pp'xx)) |-> ((((zone_states )((pp'xx))) <+ (({(((pp'yy)) |-> ((2|->STATE)))})))))})))) : (((((0) .. (3))) --> (((((0) .. (3))) --> (((1..2)*{STATE})))))));
 ((aircraft) \/ (({rec(altitude_limit$8888 >> 3,current_altitude$8888 >> 1,current_speed$8888 >> 1,heading$8888 >> (1|->DIRECTION),idd$8888 >> 0,speed_limit$8888 >> 3)}))) : POW( struct(altitude_limit$8888 >> (NAT-{0}),current_altitude$8888 >> (NAT-{0}),current_speed$8888 >> (NAT-{0}),heading$8888 >> ((1..4)*{DIRECTION}),idd$8888 >> NAT,speed_limit$8888 >> (NAT-{0})));
 "Operation precondition is well defined";
-(((aa'xx)) : (dom(zone_states)));
+(((pp'xx)) : (dom(zone_states)));
 ((zone_states) : (((dom(zone_states)) +-> (ran(zone_states)))));
-(((aa'yy)) : (dom((zone_states )((aa'xx)))));
-(((zone_states )((aa'xx))) : (((dom((zone_states )((aa'xx)))) +-> (ran((zone_states )((aa'xx)))))));
+(((pp'yy)) : (dom((zone_states )((pp'xx)))));
+(((zone_states )((pp'xx))) : (((dom((zone_states )((pp'xx)))) +-> (ran((zone_states )((pp'xx)))))));
 ((aircraft) : (FIN(aircraft)));
 "Operation is well defined"
 END

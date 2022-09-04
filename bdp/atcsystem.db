@@ -11,6 +11,9 @@
         <component_file path="C:/Users/Rafael/Desktop/2022.1/sistemas-inteligentes/atcsystem" name="atcsystem" suffix="mch" user="Rafael">
             <component name="atcsystem" type="specification" />
         </component_file>
+        <component_file path="C:/Users/Rafael/Desktop/2022.1/sistemas-inteligentes/atcsystem" name="atcsystem2" suffix="mch" user="Rafael">
+            <component name="atcsystem2" type="specification" />
+        </component_file>
         <component_file path="C:/Users/Rafael/Desktop/2022.1/sistemas-inteligentes/atcsystem" name="atcsystem_ctx" suffix="mch" user="Rafael">
             <component name="atcsystem_ctx" type="specification" />
         </component_file>

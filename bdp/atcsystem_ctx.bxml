@@ -52,6 +52,13 @@
 </Id>
 </Enumerated_Values>
 </Set>
+<Set>
+<Id value='AIRCRAFT' typref='8'>
+<Attr>
+<Pos l='9' c='5' s='8'/>
+</Attr>
+</Id>
+</Set>
 </Sets>
 <Concrete_Constants>
 <Attr>
@@ -72,7 +79,7 @@
 <Pos l='15' c='11' s='4'/>
 </Attr>
 </Id>
-<Id value='airport' typref='8'>
+<Id value='airport' typref='9'>
 <Attr>
 <Pos l='17' c='5' s='7'/>
 </Attr>
@@ -132,12 +139,12 @@
 <Attr>
 <Pos l='39' c='15' s='2'/>
 </Attr>
-<Id value='airport' typref='8'>
+<Id value='airport' typref='9'>
 <Attr>
 <Pos l='39' c='7' s='7'/>
 </Attr>
 </Id>
-<Struct typref='8'>
+<Struct typref='9'>
 <Attr>
 <Pos l='39' c='18' s='6'/>
 </Attr>
@@ -224,6 +231,11 @@
 <Id value='STATE'/>
 </Type>
 <Type id='8'>
+<Unary_Exp op='POW'>
+<Id value='AIRCRAFT'/>
+</Unary_Exp>
+</Type>
+<Type id='9'>
 <Unary_Exp op='POW'>
 <Struct>
 <Record_Item label='xx'>

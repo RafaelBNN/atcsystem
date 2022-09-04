@@ -95,31 +95,31 @@ THEORY ListConstraintsX IS
 END
 &
 THEORY ListOperationsX IS
-  Internal_List_Operations(Machine(atcsystem))==(takeofffrom);
-  List_Operations(Machine(atcsystem))==(takeofffrom)
+  Internal_List_Operations(Machine(atcsystem))==(takeoff_from);
+  List_Operations(Machine(atcsystem))==(takeoff_from)
 END
 &
 THEORY ListInputX IS
-  List_Input(Machine(atcsystem),takeofffrom)==(aa)
+  List_Input(Machine(atcsystem),takeoff_from)==(pp)
 END
 &
 THEORY ListOutputX IS
-  List_Output(Machine(atcsystem),takeofffrom)==(?)
+  List_Output(Machine(atcsystem),takeoff_from)==(?)
 END
 &
 THEORY ListHeaderX IS
-  List_Header(Machine(atcsystem),takeofffrom)==(takeofffrom(aa))
+  List_Header(Machine(atcsystem),takeoff_from)==(takeoff_from(pp))
 END
 &
 THEORY ListOperationGuardX END
 &
 THEORY ListPreconditionX IS
-  List_Precondition(Machine(atcsystem),takeofffrom)==(aa: airport & zone_states(aa'xx)(aa'yy) = CLEAR & card(aircraft)<capacity)
+  List_Precondition(Machine(atcsystem),takeoff_from)==(pp: airport & zone_states(pp'xx)(pp'yy) = CLEAR & card(aircraft)<capacity)
 END
 &
 THEORY ListSubstitutionX IS
-  Expanded_List_Substitution(Machine(atcsystem),takeofffrom)==(aa: airport & zone_states(aa'xx)(aa'yy) = CLEAR & card(aircraft)<capacity | aircraft,zone_states:=aircraft\/{rec(idd>>0,speed_limit>>3,altitude_limit>>3,heading>>NN,current_speed>>1,current_altitude>>1)},zone_states<+{aa'xx|->(zone_states(aa'xx)<+{aa'yy|->OCCUPIED})});
-  List_Substitution(Machine(atcsystem),takeofffrom)==(aircraft:=aircraft\/{rec(idd>>0,speed_limit>>3,altitude_limit>>3,heading>>NN,current_speed>>1,current_altitude>>1)} || zone_states(aa'xx)(aa'yy):=OCCUPIED)
+  Expanded_List_Substitution(Machine(atcsystem),takeoff_from)==(pp: airport & zone_states(pp'xx)(pp'yy) = CLEAR & card(aircraft)<capacity | aircraft,zone_states:=aircraft\/{rec(idd>>0,speed_limit>>3,altitude_limit>>3,heading>>NN,current_speed>>1,current_altitude>>1)},zone_states<+{pp'xx|->(zone_states(pp'xx)<+{pp'yy|->OCCUPIED})});
+  List_Substitution(Machine(atcsystem),takeoff_from)==(aircraft:=aircraft\/{rec(idd>>0,speed_limit>>3,altitude_limit>>3,heading>>NN,current_speed>>1,current_altitude>>1)} || zone_states(pp'xx)(pp'yy):=OCCUPIED)
 END
 &
 THEORY ListConstantsX IS
@@ -169,11 +169,11 @@ THEORY ListSeenInfoX IS
 END
 &
 THEORY ListANYVarX IS
-  List_ANY_Var(Machine(atcsystem),takeofffrom)==(?)
+  List_ANY_Var(Machine(atcsystem),takeoff_from)==(?)
 END
 &
 THEORY ListOfIdsX IS
-  List_Of_Ids(Machine(atcsystem)) == (? | ? | aircraft,zone_states | ? | takeofffrom | ? | seen(Machine(atcsystem_ctx)) | ? | atcsystem);
+  List_Of_Ids(Machine(atcsystem)) == (? | ? | aircraft,zone_states | ? | takeoff_from | ? | seen(Machine(atcsystem_ctx)) | ? | atcsystem);
   List_Of_HiddenCst_Ids(Machine(atcsystem)) == (? | ?);
   List_Of_VisibleCst_Ids(Machine(atcsystem)) == (?);
   List_Of_VisibleVar_Ids(Machine(atcsystem)) == (? | ?);
@@ -190,7 +190,7 @@ THEORY VariablesEnvX IS
 END
 &
 THEORY OperationsEnvX IS
-  Operations(Machine(atcsystem)) == (Type(takeofffrom) == Cst(No_type,rtype((xx: btype(INTEGER,0,3)),yy: btype(INTEGER,0,3))))
+  Operations(Machine(atcsystem)) == (Type(takeoff_from) == Cst(No_type,rtype((xx: btype(INTEGER,0,3)),yy: btype(INTEGER,0,3))))
 END
 &
 THEORY TCIntRdX IS

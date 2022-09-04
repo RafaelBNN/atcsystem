@@ -1,5 +1,5 @@
 ﻿MACHINE
-    atcsystem
+    atcsystem2
 
 SEES
 
@@ -8,12 +8,29 @@ SEES
 ABSTRACT_VARIABLES
 
     zone_states ,
+    aircraft ,
 
-    aircraft
+    ids ,
+    spdlmt ,
+    altlmt ,
+    hdng ,
+    currspd ,
+    curralt
 
 INVARIANT
 
     zone_states : ( 0 .. 3 --> ( 0 .. 3 --> STATE ) )
+
+    // colocando como funcoes parciais inicialmente porque talvez aeronaves que
+    // nao estejam no mapa naquele momento nao tenham aquele atributo
+    & ids : AIRCRAFT +-> NAT
+    & spdlmt : AIRCRAFT +-> NAT1
+    & altlmt : AIRCRAFT +-> NAT1
+    & hdng : AIRCRAFT +-> DIRECTION
+    & currspd : AIRCRAFT +-> NAT1
+    & curralt : AIRCRAFT +-> NAT1
+
+    // para todo spdlmt e currspd, vamos ter que fazer a relacao
 
 //    zone_states : struct(xx : (0..mapw), yy : (0..maph)) --> STATE
 
@@ -36,6 +53,12 @@ INITIALISATION
 //                }
 
     || aircraft := {}
+    || ids := {}
+    || spdlmt := {}
+    || altlmt := {}
+    || hdng := {}
+    || currspd := {}
+    || curralt := {}
 
 OPERATIONS
 
@@ -57,30 +80,6 @@ OPERATIONS
         ) }
         || zone_states ( pp ' xx ) ( pp ' yy ) := OCCUPIED
 
-    END ;
-
-    change_direction ( aa , hh ) =
-    PRE
-        aa : aircraft
-        & hh : DIRECTION - { aa ' heading }
-    THEN
-        aa ' heading := hh
-    END ;
-
-    speedup ( aa ) =
-    PRE
-        aa : aircraft
-        & aa ' current_speed < aa ' speed_limit
-    THEN
-        aa ' current_speed := aa ' current_speed + 1
-    END ;
-
-    slowdown ( aa ) =
-    PRE
-        aa : aircraft
-        & aa ' current_speed < 1
-    THEN
-        aa ' current_speed := aa ' current_speed - 1
     END
 
 END

@@ -191,8 +191,8 @@
             </Goal>
         </Simple_Goal>
     </Proof_Obligation>
-    <Proof_Obligation goalHash="3022169492">
-        <Tag>Operation_takeofffrom</Tag>
+    <Proof_Obligation goalHash="3452071536">
+        <Tag>Operation_takeoff_from</Tag>
         <Definition name="B definitions"/>
         <Definition name="ctx"/>
         <Definition name="cst"/>
@@ -204,7 +204,7 @@
         <Definition name="ass"/>
         <Hypothesis>
             <Exp_Comparison op=":">
-                <Id value="aa" typref="9" tag="C:\Users\Rafael\Desktop\2022.1\sistemas-inteligentes\atcsystem\bdp\atcsystem.bxml:1:5:1:2:1:1:1"/>
+                <Id value="pp" typref="9" tag="C:\Users\Rafael\Desktop\2022.1\sistemas-inteligentes\atcsystem\bdp\atcsystem.bxml:1:5:1:2:1:1:1"/>
                 <Id value="airport" typref="2" tag="C:\Users\Rafael\Desktop\2022.1\sistemas-inteligentes\atcsystem\bdp\atcsystem.bxml:1:5:1:2:1:1:2"/>
             </Exp_Comparison>
         </Hypothesis>
@@ -214,11 +214,11 @@
                     <Binary_Exp op="(" typref="8">
                         <Id value="zone_states" typref="3" tag="C:\Users\Rafael\Desktop\2022.1\sistemas-inteligentes\atcsystem\bdp\atcsystem.bxml:1:5:1:2:1:2:1:1:1"/>
                         <Record_Field_Access label="xx" typref="1">
-                            <Id value="aa" typref="9" tag="C:\Users\Rafael\Desktop\2022.1\sistemas-inteligentes\atcsystem\bdp\atcsystem.bxml:1:5:1:2:1:2:1:1:2:1"/>
+                            <Id value="pp" typref="9" tag="C:\Users\Rafael\Desktop\2022.1\sistemas-inteligentes\atcsystem\bdp\atcsystem.bxml:1:5:1:2:1:2:1:1:2:1"/>
                         </Record_Field_Access>
                     </Binary_Exp>
                     <Record_Field_Access label="yy" typref="1">
-                        <Id value="aa" typref="9" tag="C:\Users\Rafael\Desktop\2022.1\sistemas-inteligentes\atcsystem\bdp\atcsystem.bxml:1:5:1:2:1:2:1:2:1"/>
+                        <Id value="pp" typref="9" tag="C:\Users\Rafael\Desktop\2022.1\sistemas-inteligentes\atcsystem\bdp\atcsystem.bxml:1:5:1:2:1:2:1:2:1"/>
                     </Record_Field_Access>
                 </Binary_Exp>
                 <Id value="CLEAR" typref="1" tag="C:\Users\Rafael\Desktop\2022.1\sistemas-inteligentes\atcsystem\bdp\atcsystem.bxml:1:5:1:2:1:2:2"/>
@@ -241,19 +241,19 @@
                         <Nary_Exp op="{" typref="3">
                             <Binary_Exp op="|-&gt;" typref="7">
                                 <Record_Field_Access label="xx" typref="1">
-                                    <Id value="aa" typref="9" tag="C:\Users\Rafael\Desktop\2022.1\sistemas-inteligentes\atcsystem\bdp\atcsystem.bxml:1:5:1:3:1:2:1:1:1:2:1"/>
+                                    <Id value="pp" typref="9" tag="C:\Users\Rafael\Desktop\2022.1\sistemas-inteligentes\atcsystem\bdp\atcsystem.bxml:1:5:1:3:1:2:1:1:1:2:1"/>
                                 </Record_Field_Access>
                                 <Binary_Exp op="&lt;+" typref="8">
                                     <Binary_Exp op="(" typref="8">
                                         <Id value="zone_states" typref="3" tag="C:\Users\Rafael\Desktop\2022.1\sistemas-inteligentes\atcsystem\bdp\atcsystem.bxml:1:5:1:3:1:2:1:1:1:1"/>
                                         <Record_Field_Access label="xx" typref="1">
-                                            <Id value="aa" typref="9" tag="C:\Users\Rafael\Desktop\2022.1\sistemas-inteligentes\atcsystem\bdp\atcsystem.bxml:1:5:1:3:1:2:1:1:1:2:1"/>
+                                            <Id value="pp" typref="9" tag="C:\Users\Rafael\Desktop\2022.1\sistemas-inteligentes\atcsystem\bdp\atcsystem.bxml:1:5:1:3:1:2:1:1:1:2:1"/>
                                         </Record_Field_Access>
                                     </Binary_Exp>
                                     <Nary_Exp op="{" typref="8">
                                         <Binary_Exp op="|-&gt;" typref="10">
                                             <Record_Field_Access label="yy" typref="1">
-                                                <Id value="aa" typref="9" tag="C:\Users\Rafael\Desktop\2022.1\sistemas-inteligentes\atcsystem\bdp\atcsystem.bxml:1:5:1:3:1:2:1:1:2:1"/>
+                                                <Id value="pp" typref="9" tag="C:\Users\Rafael\Desktop\2022.1\sistemas-inteligentes\atcsystem\bdp\atcsystem.bxml:1:5:1:3:1:2:1:1:2:1"/>
                                             </Record_Field_Access>
                                             <Id value="OCCUPIED" typref="1" tag="C:\Users\Rafael\Desktop\2022.1\sistemas-inteligentes\atcsystem\bdp\atcsystem.bxml:1:5:1:3:1:2:2:1"/>
                                         </Binary_Exp>
@@ -331,8 +331,8 @@
             </Goal>
         </Simple_Goal>
     </Proof_Obligation>
-    <Proof_Obligation goalHash="1991451859">
-        <Tag>WellDefinednessPrecondition_takeofffrom</Tag>
+    <Proof_Obligation goalHash="3027689227">
+        <Tag>WellDefinednessPrecondition_takeoff_from</Tag>
         <Definition name="B definitions"/>
         <Definition name="ctx"/>
         <Definition name="cst"/>
@@ -344,7 +344,7 @@
         <Definition name="ass"/>
         <Local_Hyp num="1">
             <Exp_Comparison op=":">
-                <Id value="aa" typref="9" tag="C:\Users\Rafael\Desktop\2022.1\sistemas-inteligentes\atcsystem\bdp\atcsystem.bxml:1:5:1:2:1:1:1"/>
+                <Id value="pp" typref="9" tag="C:\Users\Rafael\Desktop\2022.1\sistemas-inteligentes\atcsystem\bdp\atcsystem.bxml:1:5:1:2:1:1:1"/>
                 <Id value="airport" typref="2" tag="C:\Users\Rafael\Desktop\2022.1\sistemas-inteligentes\atcsystem\bdp\atcsystem.bxml:1:5:1:2:1:1:2"/>
             </Exp_Comparison>
         </Local_Hyp>
@@ -354,11 +354,11 @@
                     <Binary_Exp op="(" typref="8">
                         <Id value="zone_states" typref="3" tag="C:\Users\Rafael\Desktop\2022.1\sistemas-inteligentes\atcsystem\bdp\atcsystem.bxml:1:5:1:2:1:2:1:1:1"/>
                         <Record_Field_Access label="xx" typref="1">
-                            <Id value="aa" typref="9" tag="C:\Users\Rafael\Desktop\2022.1\sistemas-inteligentes\atcsystem\bdp\atcsystem.bxml:1:5:1:2:1:2:1:1:2:1"/>
+                            <Id value="pp" typref="9" tag="C:\Users\Rafael\Desktop\2022.1\sistemas-inteligentes\atcsystem\bdp\atcsystem.bxml:1:5:1:2:1:2:1:1:2:1"/>
                         </Record_Field_Access>
                     </Binary_Exp>
                     <Record_Field_Access label="yy" typref="1">
-                        <Id value="aa" typref="9" tag="C:\Users\Rafael\Desktop\2022.1\sistemas-inteligentes\atcsystem\bdp\atcsystem.bxml:1:5:1:2:1:2:1:2:1"/>
+                        <Id value="pp" typref="9" tag="C:\Users\Rafael\Desktop\2022.1\sistemas-inteligentes\atcsystem\bdp\atcsystem.bxml:1:5:1:2:1:2:1:2:1"/>
                     </Record_Field_Access>
                 </Binary_Exp>
                 <Id value="CLEAR" typref="1" tag="C:\Users\Rafael\Desktop\2022.1\sistemas-inteligentes\atcsystem\bdp\atcsystem.bxml:1:5:1:2:1:2:2"/>
@@ -370,7 +370,7 @@
             <Goal>
                 <Exp_Comparison op=":">
                     <Record_Field_Access label="xx" typref="1">
-                        <Id value="aa" typref="9" tag="C:\Users\Rafael\Desktop\2022.1\sistemas-inteligentes\atcsystem\bdp\atcsystem.bxml:1:5:1:2:1:2:1:1:2:1"/>
+                        <Id value="pp" typref="9" tag="C:\Users\Rafael\Desktop\2022.1\sistemas-inteligentes\atcsystem\bdp\atcsystem.bxml:1:5:1:2:1:2:1:1:2:1"/>
                     </Record_Field_Access>
                     <Unary_Exp op="dom" typref="0">
                         <Id value="zone_states" typref="3" tag="C:\Users\Rafael\Desktop\2022.1\sistemas-inteligentes\atcsystem\bdp\atcsystem.bxml:1:5:1:2:1:2:1:1:1"/>
@@ -401,13 +401,13 @@
             <Goal>
                 <Exp_Comparison op=":">
                     <Record_Field_Access label="yy" typref="1">
-                        <Id value="aa" typref="9" tag="C:\Users\Rafael\Desktop\2022.1\sistemas-inteligentes\atcsystem\bdp\atcsystem.bxml:1:5:1:2:1:2:1:2:1"/>
+                        <Id value="pp" typref="9" tag="C:\Users\Rafael\Desktop\2022.1\sistemas-inteligentes\atcsystem\bdp\atcsystem.bxml:1:5:1:2:1:2:1:2:1"/>
                     </Record_Field_Access>
                     <Unary_Exp op="dom" typref="0">
                         <Binary_Exp op="(" typref="8">
                             <Id value="zone_states" typref="3" tag="C:\Users\Rafael\Desktop\2022.1\sistemas-inteligentes\atcsystem\bdp\atcsystem.bxml:1:5:1:2:1:2:1:1:1"/>
                             <Record_Field_Access label="xx" typref="1">
-                                <Id value="aa" typref="9" tag="C:\Users\Rafael\Desktop\2022.1\sistemas-inteligentes\atcsystem\bdp\atcsystem.bxml:1:5:1:2:1:2:1:1:2:1"/>
+                                <Id value="pp" typref="9" tag="C:\Users\Rafael\Desktop\2022.1\sistemas-inteligentes\atcsystem\bdp\atcsystem.bxml:1:5:1:2:1:2:1:1:2:1"/>
                             </Record_Field_Access>
                         </Binary_Exp>
                     </Unary_Exp>
@@ -422,7 +422,7 @@
                     <Binary_Exp op="(" typref="8">
                         <Id value="zone_states" typref="3" tag="C:\Users\Rafael\Desktop\2022.1\sistemas-inteligentes\atcsystem\bdp\atcsystem.bxml:1:5:1:2:1:2:1:1:1"/>
                         <Record_Field_Access label="xx" typref="1">
-                            <Id value="aa" typref="9" tag="C:\Users\Rafael\Desktop\2022.1\sistemas-inteligentes\atcsystem\bdp\atcsystem.bxml:1:5:1:2:1:2:1:1:2:1"/>
+                            <Id value="pp" typref="9" tag="C:\Users\Rafael\Desktop\2022.1\sistemas-inteligentes\atcsystem\bdp\atcsystem.bxml:1:5:1:2:1:2:1:1:2:1"/>
                         </Record_Field_Access>
                     </Binary_Exp>
                     <Binary_Exp op="+-&gt;" typref="5">
@@ -430,7 +430,7 @@
                             <Binary_Exp op="(" typref="8">
                                 <Id value="zone_states" typref="3" tag="C:\Users\Rafael\Desktop\2022.1\sistemas-inteligentes\atcsystem\bdp\atcsystem.bxml:1:5:1:2:1:2:1:1:1"/>
                                 <Record_Field_Access label="xx" typref="1">
-                                    <Id value="aa" typref="9" tag="C:\Users\Rafael\Desktop\2022.1\sistemas-inteligentes\atcsystem\bdp\atcsystem.bxml:1:5:1:2:1:2:1:1:2:1"/>
+                                    <Id value="pp" typref="9" tag="C:\Users\Rafael\Desktop\2022.1\sistemas-inteligentes\atcsystem\bdp\atcsystem.bxml:1:5:1:2:1:2:1:1:2:1"/>
                                 </Record_Field_Access>
                             </Binary_Exp>
                         </Unary_Exp>
@@ -438,7 +438,7 @@
                             <Binary_Exp op="(" typref="8">
                                 <Id value="zone_states" typref="3" tag="C:\Users\Rafael\Desktop\2022.1\sistemas-inteligentes\atcsystem\bdp\atcsystem.bxml:1:5:1:2:1:2:1:1:1"/>
                                 <Record_Field_Access label="xx" typref="1">
-                                    <Id value="aa" typref="9" tag="C:\Users\Rafael\Desktop\2022.1\sistemas-inteligentes\atcsystem\bdp\atcsystem.bxml:1:5:1:2:1:2:1:1:2:1"/>
+                                    <Id value="pp" typref="9" tag="C:\Users\Rafael\Desktop\2022.1\sistemas-inteligentes\atcsystem\bdp\atcsystem.bxml:1:5:1:2:1:2:1:1:2:1"/>
                                 </Record_Field_Access>
                             </Binary_Exp>
                         </Unary_Exp>
@@ -460,8 +460,8 @@
             </Goal>
         </Simple_Goal>
     </Proof_Obligation>
-    <Proof_Obligation goalHash="2155022250">
-        <Tag>WellDefinedness_takeofffrom</Tag>
+    <Proof_Obligation goalHash="4105998070">
+        <Tag>WellDefinedness_takeoff_from</Tag>
         <Definition name="B definitions"/>
         <Definition name="ctx"/>
         <Definition name="cst"/>
@@ -473,7 +473,7 @@
         <Definition name="ass"/>
         <Hypothesis>
             <Exp_Comparison op=":">
-                <Id value="aa" typref="9" tag="C:\Users\Rafael\Desktop\2022.1\sistemas-inteligentes\atcsystem\bdp\atcsystem.bxml:1:5:1:2:1:1:1"/>
+                <Id value="pp" typref="9" tag="C:\Users\Rafael\Desktop\2022.1\sistemas-inteligentes\atcsystem\bdp\atcsystem.bxml:1:5:1:2:1:1:1"/>
                 <Id value="airport" typref="2" tag="C:\Users\Rafael\Desktop\2022.1\sistemas-inteligentes\atcsystem\bdp\atcsystem.bxml:1:5:1:2:1:1:2"/>
             </Exp_Comparison>
         </Hypothesis>
@@ -483,11 +483,11 @@
                     <Binary_Exp op="(" typref="8">
                         <Id value="zone_states" typref="3" tag="C:\Users\Rafael\Desktop\2022.1\sistemas-inteligentes\atcsystem\bdp\atcsystem.bxml:1:5:1:2:1:2:1:1:1"/>
                         <Record_Field_Access label="xx" typref="1">
-                            <Id value="aa" typref="9" tag="C:\Users\Rafael\Desktop\2022.1\sistemas-inteligentes\atcsystem\bdp\atcsystem.bxml:1:5:1:2:1:2:1:1:2:1"/>
+                            <Id value="pp" typref="9" tag="C:\Users\Rafael\Desktop\2022.1\sistemas-inteligentes\atcsystem\bdp\atcsystem.bxml:1:5:1:2:1:2:1:1:2:1"/>
                         </Record_Field_Access>
                     </Binary_Exp>
                     <Record_Field_Access label="yy" typref="1">
-                        <Id value="aa" typref="9" tag="C:\Users\Rafael\Desktop\2022.1\sistemas-inteligentes\atcsystem\bdp\atcsystem.bxml:1:5:1:2:1:2:1:2:1"/>
+                        <Id value="pp" typref="9" tag="C:\Users\Rafael\Desktop\2022.1\sistemas-inteligentes\atcsystem\bdp\atcsystem.bxml:1:5:1:2:1:2:1:2:1"/>
                     </Record_Field_Access>
                 </Binary_Exp>
                 <Id value="CLEAR" typref="1" tag="C:\Users\Rafael\Desktop\2022.1\sistemas-inteligentes\atcsystem\bdp\atcsystem.bxml:1:5:1:2:1:2:2"/>
@@ -506,7 +506,7 @@
             <Goal>
                 <Exp_Comparison op=":">
                     <Record_Field_Access label="xx" typref="1">
-                        <Id value="aa" typref="9" tag="C:\Users\Rafael\Desktop\2022.1\sistemas-inteligentes\atcsystem\bdp\atcsystem.bxml:1:5:1:3:1:2:1:1:1:2:1"/>
+                        <Id value="pp" typref="9" tag="C:\Users\Rafael\Desktop\2022.1\sistemas-inteligentes\atcsystem\bdp\atcsystem.bxml:1:5:1:3:1:2:1:1:1:2:1"/>
                     </Record_Field_Access>
                     <Unary_Exp op="dom" typref="0">
                         <Id value="zone_states" typref="3" tag="C:\Users\Rafael\Desktop\2022.1\sistemas-inteligentes\atcsystem\bdp\atcsystem.bxml:1:5:1:3:1:2:1:1:1:1"/>

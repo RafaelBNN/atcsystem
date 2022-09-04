@@ -4,9 +4,9 @@ MACHINE
 SETS
     
     DIRECTION = { NN, SS, EE, WW };
-    STATE = {CLEAR, OCCUPIED}
+    STATE = {CLEAR, OCCUPIED};
     
-//    AIRCRAFT
+    AIRCRAFT
     
 CONSTANTS
     

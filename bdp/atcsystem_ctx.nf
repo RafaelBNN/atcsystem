@@ -120,14 +120,15 @@ THEORY ListSetsX IS
   Context_List_Enumerated(Machine(atcsystem_ctx))==(?);
   Context_List_Defered(Machine(atcsystem_ctx))==(?);
   Context_List_Sets(Machine(atcsystem_ctx))==(?);
-  List_Valuable_Sets(Machine(atcsystem_ctx))==(?);
+  List_Valuable_Sets(Machine(atcsystem_ctx))==(AIRCRAFT);
   Inherited_List_Enumerated(Machine(atcsystem_ctx))==(?);
   Inherited_List_Defered(Machine(atcsystem_ctx))==(?);
   Inherited_List_Sets(Machine(atcsystem_ctx))==(?);
   List_Enumerated(Machine(atcsystem_ctx))==(DIRECTION,STATE);
-  List_Defered(Machine(atcsystem_ctx))==(?);
-  List_Sets(Machine(atcsystem_ctx))==(DIRECTION,STATE);
-  Set_Definition(Machine(atcsystem_ctx),STATE)==({CLEAR,OCCUPIED})
+  List_Defered(Machine(atcsystem_ctx))==(AIRCRAFT);
+  List_Sets(Machine(atcsystem_ctx))==(DIRECTION,STATE,AIRCRAFT);
+  Set_Definition(Machine(atcsystem_ctx),STATE)==({CLEAR,OCCUPIED});
+  Set_Definition(Machine(atcsystem_ctx),AIRCRAFT)==(?)
 END
 &
 THEORY ListHiddenConstantsX IS
@@ -141,7 +142,7 @@ THEORY ListPropertiesX IS
   Abstract_List_Properties(Machine(atcsystem_ctx))==(btrue);
   Context_List_Properties(Machine(atcsystem_ctx))==(btrue);
   Inherited_List_Properties(Machine(atcsystem_ctx))==(btrue);
-  List_Properties(Machine(atcsystem_ctx))==(capacity: NAT1 & mapw = 3 & maph = 3 & airport <: struct(xx>>(0..3),yy>>(0..3)) & DIRECTION: FIN(INTEGER) & not(DIRECTION = {}) & STATE: FIN(INTEGER) & not(STATE = {}))
+  List_Properties(Machine(atcsystem_ctx))==(capacity: NAT1 & mapw = 3 & maph = 3 & airport <: struct(xx>>(0..3),yy>>(0..3)) & AIRCRAFT: FIN(INTEGER) & not(AIRCRAFT = {}) & DIRECTION: FIN(INTEGER) & not(DIRECTION = {}) & STATE: FIN(INTEGER) & not(STATE = {}))
 END
 &
 THEORY ListSeenInfoX END
@@ -149,7 +150,7 @@ THEORY ListSeenInfoX END
 THEORY ListANYVarX END
 &
 THEORY ListOfIdsX IS
-  List_Of_Ids(Machine(atcsystem_ctx)) == (capacity,mapw,maph,airport,DIRECTION,STATE,NN,SS,EE,WW,CLEAR,OCCUPIED | ? | ? | ? | ? | ? | ? | ? | atcsystem_ctx);
+  List_Of_Ids(Machine(atcsystem_ctx)) == (capacity,mapw,maph,airport,DIRECTION,STATE,AIRCRAFT,NN,SS,EE,WW,CLEAR,OCCUPIED | ? | ? | ? | ? | ? | ? | ? | atcsystem_ctx);
   List_Of_HiddenCst_Ids(Machine(atcsystem_ctx)) == (? | ?);
   List_Of_VisibleCst_Ids(Machine(atcsystem_ctx)) == (capacity,mapw,maph,airport);
   List_Of_VisibleVar_Ids(Machine(atcsystem_ctx)) == (? | ?);
@@ -157,7 +158,7 @@ THEORY ListOfIdsX IS
 END
 &
 THEORY SetsEnvX IS
-  Sets(Machine(atcsystem_ctx)) == (Type(DIRECTION) == Cst(SetOf(etype(DIRECTION,0,3)));Type(STATE) == Cst(SetOf(etype(STATE,0,1))))
+  Sets(Machine(atcsystem_ctx)) == (Type(DIRECTION) == Cst(SetOf(etype(DIRECTION,0,3)));Type(STATE) == Cst(SetOf(etype(STATE,0,1)));Type(AIRCRAFT) == Cst(SetOf(atype(AIRCRAFT,"[AIRCRAFT","]AIRCRAFT"))))
 END
 &
 THEORY ConstantsEnvX IS
