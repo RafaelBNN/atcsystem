@@ -4,35 +4,66 @@ MACHINE
 SETS
     
     DIRECTION = { NN, SS, EE, WW };
-    STATE = {CLEAR, OCCUPIED};
+    STATE = {CLEAR, OCCUPIED}
     
-    AIRCRAFTS
+//    AIRCRAFT
     
 CONSTANTS
     
-    mapw, maph,
+    capacity, // quantidade maxima de aeronaves no mapa em um dado momento
     
-    // TODO: essas coisas vao ter que virar funcoes de AIRCRAFT
-    // pra alguma coisa (ou struct :think:)
+    mapw, maph, // altura e largura do mapa
     
-    aircraftid,
-    source,
-    destination,
-    speed_limit,
-    altitude_limit
+    airport // conjunto com as localizacoes dos aeroportos
+    
+//    aircraft
+    
+//    aircraftid, 
+//    speed_limit,
+//    altitude_limit   
+//    source,
+//    destination,
     
 PROPERTIES
     
-    mapw = 3
+//    total : NAT1
+//    & capacity : NAT1
+//    & capacity < total
+//    & card(AIRCRAFT) = total
+
+    capacity : NAT1
+    
+    & mapw = 3
     & maph = 3
-    & aircraftid : NAT
-    & speed_limit = 2
-    & altitude_limit : NAT
-    & source : struct(xx: (0..3), yy: (0..3))
-    & destination : struct(xx: (0..3), yy: (0..3)) - {source}
     
-INVARIANT
+    & airport <: struct(xx: (0..3), yy: (0..3))
+        
+//    TODO: essas coisas vao ter que virar funcoes de AIRCRAFT
+//    pra alguma coisa (ou struct :think:)
     
-    source /= destination
+//    & aircraftid : NAT
+//    & speed_limit = 2
+//    & altitude_limit : NAT
+//    & source : struct(xx: (0..3), yy: (0..3))
+//    & destination : struct(xx: (0..3), yy: (0..3)) - {source}
+
+//    & aircraftid : AIRCRAFT --> NAT
+//    & speed_limit : AIRCRAFT --> NAT1
+//    & altitude_limit : AIRCRAFT --> NAT1
+    
+//    & source : AIRCRAFT --> airport
+//    & destination : AIRCRAFT --> airport
+
+//    & aircraft <: struct(
+//        idd : NAT,
+//        speed_limit : NAT1,
+//        altitude_limit : NAT1,
+//        source : airport,
+//        destination : airport
+//    )        
+    
+//INVARIANT
+//    
+//    ! aa . ( aa : aircraft => aa'source /= aa'destination)
 
 END

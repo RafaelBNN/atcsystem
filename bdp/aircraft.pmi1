@@ -1,11 +1,11 @@
 THEORY BalanceX IS
-aircraft,7,0,0,5,0,0,0;
+aircraft,7,0,0,6,0,0,0;
 Initialisation,5,0,0,5,0,0,0;
-Operation_speedup,2,0,0,0,0,0,0
+Operation_speedup,2,0,0,1,0,0,0
 END
 &
 THEORY ProofState IS
-Unproved;
+Proved(0);
 Unproved;
 Proved(0);
 Proved(0);
@@ -15,7 +15,7 @@ Proved(0)
 END
 &
 THEORY MethodList IS
-?;
+pr;
 ?;
 pr;
 pr;
@@ -25,7 +25,7 @@ pr
 END
 &
 THEORY PassList IS
-Force(0),(?; 0);
+Force(0),?;
 Force(0),(?; 0);
 Force(0),?;
 Force(0),?;
@@ -35,7 +35,7 @@ Force(0),?
 END
 &
 THEORY Status IS
-aircraft,7,0,5,0,0,0;
+aircraft,7,0,6,0,0,0;
 Initialisation,5,0,5,0,0,0;
-Operation_speedup,2,0,0,0,0,0
+Operation_speedup,2,0,1,0,0,0
 END

@@ -6,6 +6,5 @@ topology [ label=" topology " shape= box ]
 topology2d [ label=" topology2d " shape= box ]
 
 "aircraft" -> "topology" [style= dotted ]
-"aircraft" -> "topology2d" [style= dotted ]
 "atcsystem" -> "atcsystem_ctx" [style= dotted ]
 }

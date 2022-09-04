@@ -1,13 +1,10 @@
-﻿/* aircraft
- * Author: rbnn
- * Creation date: 26/08/22
- */
-MACHINE
+﻿MACHINE
     aircraft
 
 SEES
 
-    topology , topology2d
+    topology
+//    ,topology2d
 
 SETS
 

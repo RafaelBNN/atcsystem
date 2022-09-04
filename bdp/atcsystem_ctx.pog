@@ -18,7 +18,7 @@
     </Define>
     <Define name="ctx" hash="0"/>
     <Define name="seext" hash="0"/>
-    <Define name="lprp" hash="357675909">
+    <Define name="lprp" hash="4013473873">
         <Set>
             <Id value="DIRECTION" typref="0"/>
             <Enumerated_Values>
@@ -35,82 +35,42 @@
                 <Id value="OCCUPIED" typref="1"/>
             </Enumerated_Values>
         </Set>
-        <Set>
-            <Id value="AIRCRAFTS" typref="0"/>
-        </Set>
-        <Exp_Comparison op="=">
-            <Id value="mapw" typref="1" tag="C:\Users\Rafael\Desktop\2022.1\sistemas-inteligentes\atcsystem\bdp\atcsystem_ctx.bxml:1:3:1:1:1"/>
-            <Integer_Literal value="3" typref="1" tag="C:\Users\Rafael\Desktop\2022.1\sistemas-inteligentes\atcsystem\bdp\atcsystem_ctx.bxml:1:3:1:1:2"/>
+        <Exp_Comparison op=":">
+            <Id value="capacity" typref="1" tag="C:\Users\Rafael\Desktop\2022.1\sistemas-inteligentes\atcsystem\bdp\atcsystem_ctx.bxml:1:3:1:1:1"/>
+            <Id value="NAT1" typref="0" tag="C:\Users\Rafael\Desktop\2022.1\sistemas-inteligentes\atcsystem\bdp\atcsystem_ctx.bxml:1:3:1:1:2"/>
         </Exp_Comparison>
         <Exp_Comparison op="=">
-            <Id value="maph" typref="1" tag="C:\Users\Rafael\Desktop\2022.1\sistemas-inteligentes\atcsystem\bdp\atcsystem_ctx.bxml:1:3:1:2:1"/>
+            <Id value="mapw" typref="1" tag="C:\Users\Rafael\Desktop\2022.1\sistemas-inteligentes\atcsystem\bdp\atcsystem_ctx.bxml:1:3:1:2:1"/>
             <Integer_Literal value="3" typref="1" tag="C:\Users\Rafael\Desktop\2022.1\sistemas-inteligentes\atcsystem\bdp\atcsystem_ctx.bxml:1:3:1:2:2"/>
         </Exp_Comparison>
-        <Exp_Comparison op=":">
-            <Id value="aircraftid" typref="1" tag="C:\Users\Rafael\Desktop\2022.1\sistemas-inteligentes\atcsystem\bdp\atcsystem_ctx.bxml:1:3:1:3:1"/>
-            <Id value="NAT" typref="0" tag="C:\Users\Rafael\Desktop\2022.1\sistemas-inteligentes\atcsystem\bdp\atcsystem_ctx.bxml:1:3:1:3:2"/>
-        </Exp_Comparison>
         <Exp_Comparison op="=">
-            <Id value="speed_limit" typref="1" tag="C:\Users\Rafael\Desktop\2022.1\sistemas-inteligentes\atcsystem\bdp\atcsystem_ctx.bxml:1:3:1:4:1"/>
-            <Integer_Literal value="2" typref="1" tag="C:\Users\Rafael\Desktop\2022.1\sistemas-inteligentes\atcsystem\bdp\atcsystem_ctx.bxml:1:3:1:4:2"/>
+            <Id value="maph" typref="1" tag="C:\Users\Rafael\Desktop\2022.1\sistemas-inteligentes\atcsystem\bdp\atcsystem_ctx.bxml:1:3:1:3:1"/>
+            <Integer_Literal value="3" typref="1" tag="C:\Users\Rafael\Desktop\2022.1\sistemas-inteligentes\atcsystem\bdp\atcsystem_ctx.bxml:1:3:1:3:2"/>
         </Exp_Comparison>
-        <Exp_Comparison op=":">
-            <Id value="altitude_limit" typref="1" tag="C:\Users\Rafael\Desktop\2022.1\sistemas-inteligentes\atcsystem\bdp\atcsystem_ctx.bxml:1:3:1:5:1"/>
-            <Id value="NAT" typref="0" tag="C:\Users\Rafael\Desktop\2022.1\sistemas-inteligentes\atcsystem\bdp\atcsystem_ctx.bxml:1:3:1:5:2"/>
-        </Exp_Comparison>
-        <Exp_Comparison op=":">
-            <Id value="source" typref="2" tag="C:\Users\Rafael\Desktop\2022.1\sistemas-inteligentes\atcsystem\bdp\atcsystem_ctx.bxml:1:3:1:6:1"/>
-            <Struct typref="3">
+        <Exp_Comparison op="&lt;:">
+            <Id value="airport" typref="2" tag="C:\Users\Rafael\Desktop\2022.1\sistemas-inteligentes\atcsystem\bdp\atcsystem_ctx.bxml:1:3:1:4:1"/>
+            <Struct typref="2">
                 <Record_Item label="xx">
                     <Binary_Exp op=".." typref="0">
-                        <Integer_Literal value="0" typref="1" tag="C:\Users\Rafael\Desktop\2022.1\sistemas-inteligentes\atcsystem\bdp\atcsystem_ctx.bxml:1:3:1:6:2:1:1:1"/>
-                        <Integer_Literal value="3" typref="1" tag="C:\Users\Rafael\Desktop\2022.1\sistemas-inteligentes\atcsystem\bdp\atcsystem_ctx.bxml:1:3:1:6:2:1:1:2"/>
+                        <Integer_Literal value="0" typref="1" tag="C:\Users\Rafael\Desktop\2022.1\sistemas-inteligentes\atcsystem\bdp\atcsystem_ctx.bxml:1:3:1:4:2:1:1:1"/>
+                        <Integer_Literal value="3" typref="1" tag="C:\Users\Rafael\Desktop\2022.1\sistemas-inteligentes\atcsystem\bdp\atcsystem_ctx.bxml:1:3:1:4:2:1:1:2"/>
                     </Binary_Exp>
                 </Record_Item>
                 <Record_Item label="yy">
                     <Binary_Exp op=".." typref="0">
-                        <Integer_Literal value="0" typref="1" tag="C:\Users\Rafael\Desktop\2022.1\sistemas-inteligentes\atcsystem\bdp\atcsystem_ctx.bxml:1:3:1:6:2:2:1:1"/>
-                        <Integer_Literal value="3" typref="1" tag="C:\Users\Rafael\Desktop\2022.1\sistemas-inteligentes\atcsystem\bdp\atcsystem_ctx.bxml:1:3:1:6:2:2:1:2"/>
+                        <Integer_Literal value="0" typref="1" tag="C:\Users\Rafael\Desktop\2022.1\sistemas-inteligentes\atcsystem\bdp\atcsystem_ctx.bxml:1:3:1:4:2:2:1:1"/>
+                        <Integer_Literal value="3" typref="1" tag="C:\Users\Rafael\Desktop\2022.1\sistemas-inteligentes\atcsystem\bdp\atcsystem_ctx.bxml:1:3:1:4:2:2:1:2"/>
                     </Binary_Exp>
                 </Record_Item>
             </Struct>
         </Exp_Comparison>
-        <Exp_Comparison op=":">
-            <Id value="destination" typref="2" tag="C:\Users\Rafael\Desktop\2022.1\sistemas-inteligentes\atcsystem\bdp\atcsystem_ctx.bxml:1:3:1:7:1"/>
-            <Binary_Exp op="-s" typref="3">
-                <Struct typref="3">
-                    <Record_Item label="xx">
-                        <Binary_Exp op=".." typref="0">
-                            <Integer_Literal value="0" typref="1" tag="C:\Users\Rafael\Desktop\2022.1\sistemas-inteligentes\atcsystem\bdp\atcsystem_ctx.bxml:1:3:1:7:2:1:1:1:1"/>
-                            <Integer_Literal value="3" typref="1" tag="C:\Users\Rafael\Desktop\2022.1\sistemas-inteligentes\atcsystem\bdp\atcsystem_ctx.bxml:1:3:1:7:2:1:1:1:2"/>
-                        </Binary_Exp>
-                    </Record_Item>
-                    <Record_Item label="yy">
-                        <Binary_Exp op=".." typref="0">
-                            <Integer_Literal value="0" typref="1" tag="C:\Users\Rafael\Desktop\2022.1\sistemas-inteligentes\atcsystem\bdp\atcsystem_ctx.bxml:1:3:1:7:2:1:2:1:1"/>
-                            <Integer_Literal value="3" typref="1" tag="C:\Users\Rafael\Desktop\2022.1\sistemas-inteligentes\atcsystem\bdp\atcsystem_ctx.bxml:1:3:1:7:2:1:2:1:2"/>
-                        </Binary_Exp>
-                    </Record_Item>
-                </Struct>
-                <Nary_Exp op="{" typref="3">
-                    <Id value="source" typref="2" tag="C:\Users\Rafael\Desktop\2022.1\sistemas-inteligentes\atcsystem\bdp\atcsystem_ctx.bxml:1:3:1:7:2:2:1"/>
-                </Nary_Exp>
-            </Binary_Exp>
-        </Exp_Comparison>
     </Define>
     <Define name="inprp" hash="0"/>
     <Define name="inext" hash="0"/>
-    <Define name="inv" hash="1482674985">
-        <Unary_Pred op="not">
-            <Exp_Comparison op="=">
-                <Id value="source" typref="2" tag="C:\Users\Rafael\Desktop\2022.1\sistemas-inteligentes\atcsystem\bdp\atcsystem_ctx.bxml:1:4:1:1"/>
-                <Id value="destination" typref="2" tag="C:\Users\Rafael\Desktop\2022.1\sistemas-inteligentes\atcsystem\bdp\atcsystem_ctx.bxml:1:4:1:2"/>
-            </Exp_Comparison>
-        </Unary_Pred>
-    </Define>
+    <Define name="inv" hash="0"/>
     <Define name="ass" hash="0"/>
     <Define name="cst" hash="0"/>
-    <Define name="sets" hash="2016619049">
+    <Define name="sets" hash="1623841204">
         <Set>
             <Id value="DIRECTION" typref="0"/>
             <Enumerated_Values>
@@ -127,31 +87,7 @@
                 <Id value="OCCUPIED" typref="1"/>
             </Enumerated_Values>
         </Set>
-        <Set>
-            <Id value="AIRCRAFTS" typref="0"/>
-        </Set>
     </Define>
-    <Proof_Obligation goalHash="2337674061">
-        <Tag>Initialisation</Tag>
-        <Definition name="B definitions"/>
-        <Definition name="ctx"/>
-        <Definition name="cst"/>
-        <Definition name="lprp"/>
-        <Definition name="inprp"/>
-        <Definition name="inext"/>
-        <Definition name="seext"/>
-        <Simple_Goal>
-            <Tag>Invariant is preserved</Tag>
-            <Goal>
-                <Unary_Pred op="not">
-                    <Exp_Comparison op="=">
-                        <Id value="source" typref="2" tag="C:\Users\Rafael\Desktop\2022.1\sistemas-inteligentes\atcsystem\bdp\atcsystem_ctx.bxml:1:4:1:1"/>
-                        <Id value="destination" typref="2" tag="C:\Users\Rafael\Desktop\2022.1\sistemas-inteligentes\atcsystem\bdp\atcsystem_ctx.bxml:1:4:1:2"/>
-                    </Exp_Comparison>
-                </Unary_Pred>
-            </Goal>
-        </Simple_Goal>
-    </Proof_Obligation>
     <TypeInfos>
         <Type id="0">
             <Unary_Exp op="POW">
@@ -162,16 +98,6 @@
             <Id value="INTEGER"/>
         </Type>
         <Type id="2">
-            <Struct>
-                <Record_Item label="xx">
-                    <Id value="INTEGER"/>
-                </Record_Item>
-                <Record_Item label="yy">
-                    <Id value="INTEGER"/>
-                </Record_Item>
-            </Struct>
-        </Type>
-        <Type id="3">
             <Unary_Exp op="POW">
                 <Struct>
                     <Record_Item label="xx">
