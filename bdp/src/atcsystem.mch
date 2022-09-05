@@ -15,20 +15,21 @@ ABSTRACT_VARIABLES
     currpos ,
     hdng ,
     currspd ,
-    curralt
+    curralt ,
+    test
 
 INVARIANT
 
     zone_states : mapa --> STATE
 
-    // talvez seja dificil utilizar struct porque nas funcoes de speedup ou change_direction
-    // fica complexo o modo de acessar uma aeronave especifica sem ter que passar
-    // toda ela como argumento da funcao
+    & test : NAT
 
-    & ids : AIRCRAFT >+> NAT
+    // talvez seja dificil utilizar struct porque, nas funcoes de speedup ou change_direction, por exemplo, torna-se complexo acessar uma aeronave especifica sem ter que passar toda ela como argumento da funcao
+
+    & ids : AIRCRAFT >+> ( 0 .. capacity - 1 ) // duas aeronaves nao podem ter o mesmo id
     & spdlmt : AIRCRAFT +-> NAT1
     & altlmt : AIRCRAFT +-> NAT1
-    & currpos : AIRCRAFT +-> struct ( posx : ( 0 .. 3 ) , posy : ( 0 .. 3 ) )
+    & currpos : AIRCRAFT >+> struct ( posx : ( 0 .. mapw ) , posy : ( 0 .. maph ) ) // duas aeronaves nao podem ter a mesma posicao atual
     & hdng : AIRCRAFT +-> DIRECTION
     & currspd : AIRCRAFT +-> NAT1
     & curralt : AIRCRAFT +-> NAT1
@@ -59,6 +60,8 @@ INITIALISATION
     || currspd := {}
     || curralt := {}
 
+    || test := 0
+
 OPERATIONS
 
     takeoff_from ( aa , pp ) =
@@ -66,6 +69,7 @@ OPERATIONS
         aa : AIRCRAFT
         & pp : airport
         & zone_states ( pp ' xx , pp ' yy ) = CLEAR
+//        & zone_states(prj1(pp), prj2(pp)) = CLEAR
         & curr_aircrafts < capacity
     THEN
         ids := ids \/ { aa |-> curr_aircrafts + 1 }
@@ -100,7 +104,67 @@ OPERATIONS
         & currspd ( ids ~ ( ii ) ) < 1
     THEN
         currspd ( ids ~ ( ii ) ) := currspd ( ids ~ ( ii ) ) - 1
+    END ;
+
+    advance_time ( ii ) =
+    PRE
+        ii : ran ( ids )
+    THEN
+        LET aa , pos BE
+            aa = ids ~ ( ii )
+            & pos = currpos ( aa )
+        IN
+            IF hdng ( aa ) = NN THEN
+                IF ( ( currpos ( aa ) ) ' posy >= currspd ( aa ) ) THEN
+                    currpos := currpos <+ { aa |-> rec ( posx : pos ' posx , posy : pos ' posy - currspd ( aa ) ) }
+                END
+            ELSIF hdng ( aa ) = SS THEN
+                IF ( currpos ( aa ) ) ' posy <= maph - currspd ( aa ) THEN
+                    currpos := currpos <+ { aa |-> rec ( posx : pos ' posx , posy : pos ' posy + currspd ( aa ) ) }
+                END
+            ELSIF hdng ( aa ) = WW THEN
+                IF ( currpos ( aa ) ) ' posx >= currspd ( aa ) THEN
+                    currpos := currpos <+ { aa |-> rec ( posx : pos ' posx - currspd ( aa ) , posy : pos ' posy ) }
+                END
+            ELSE // EE
+                IF ( currpos ( aa ) ) ' posx <= currspd ( aa ) THEN
+                    currpos := currpos <+ { aa |-> rec ( posx : pos ' posx + currspd ( aa ) , posy : pos ' posy ) }
+                END
+            END
+        END
     END
 
+//    advance_time =
+//    BEGIN
+//        test := 0 ||
+//        WHILE iter < curr_aircrafts DO
+//            LET aa BE aa = ids~(iter) IN
+//                IF hdng(aa) = NN THEN
+//                    IF currpos(aa)'posy >= currspd(aa) THEN
+//                        currpos(aa)'posy := currpos(aa)'posy - currspd(aa)
+//                    END
+//                ELSIF hdng(aa) = SS THEN
+//                    IF currpos(aa)'posy <= maph - currspd(aa) THEN
+//                        currpos(aa)'posy := currpos(aa)'posy + currspd(aa)
+//                    END
+//                ELSIF hdng(aa) = WW THEN
+//                    IF currpos(aa)'posx >= currspd(aa) THEN
+//                        currpos(aa)'posx := currpos(aa)'posx - currspd(aa)
+//                    END
+//                ELSE // EE
+//                    IF currpos(aa)'posx <= currspd(aa) THEN
+//                        currpos(aa)'posx := currpos(aa)'posx + currspd(aa)
+//                    END
+//                END
+//            END
+//            test := test + 1 ||
+//            iter := ier + 1
+//        INVARIANT
+//            iter : NAT
+//            & iter <= curr_aircrafts
+//        VARIANT
+//            curr_aircrafts - iter
+//        END
+//    END
 
 END

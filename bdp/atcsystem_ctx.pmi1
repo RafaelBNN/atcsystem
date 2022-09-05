@@ -1,16 +1,21 @@
 THEORY BalanceX IS
-atcsystem_ctx,0,0,0,0,0,0,0
+atcsystem_ctx,1,0,0,1,0,0,0;
+WellDefinednessProperties,1,0,0,1,0,0,0
 END
 &
-THEORY ProofState
+THEORY ProofState IS
+Proved(0)
 END
 &
-THEORY MethodList
+THEORY MethodList IS
+pr
 END
 &
-THEORY PassList
+THEORY PassList IS
+Force(0),?
 END
 &
 THEORY Status IS
-atcsystem_ctx,0,0,0,0,0,0
+atcsystem_ctx,1,0,1,0,0,0;
+WellDefinednessProperties,1,0,1,0,0,0
 END

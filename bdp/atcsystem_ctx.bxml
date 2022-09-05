@@ -55,186 +55,186 @@
 <Set>
 <Id value='AIRCRAFT' typref='8'>
 <Attr>
-<Pos l='9' c='5' s='8'/>
+<Pos l='8' c='5' s='8'/>
 </Attr>
 </Id>
 </Set>
 </Sets>
 <Concrete_Constants>
 <Attr>
-<Pos l='11' c='1' s='18'/>
+<Pos l='10' c='1' s='18'/>
 </Attr>
 <Id value='total' typref='1'>
 <Attr>
-<Pos l='13' c='5' s='5'/>
+<Pos l='12' c='5' s='5'/>
 </Attr>
 </Id>
 <Id value='capacity' typref='1'>
 <Attr>
-<Pos l='15' c='5' s='8'/>
+<Pos l='13' c='5' s='8'/>
 </Attr>
 </Id>
 <Id value='mapw' typref='1'>
 <Attr>
-<Pos l='17' c='5' s='4'/>
+<Pos l='14' c='5' s='4'/>
 </Attr>
 </Id>
 <Id value='maph' typref='1'>
 <Attr>
-<Pos l='17' c='11' s='4'/>
+<Pos l='14' c='11' s='4'/>
 </Attr>
 </Id>
 <Id value='mapa' typref='9'>
 <Attr>
-<Pos l='19' c='5' s='4'/>
+<Pos l='15' c='5' s='4'/>
 </Attr>
 </Id>
 <Id value='airport' typref='10'>
 <Attr>
-<Pos l='21' c='5' s='7'/>
+<Pos l='16' c='5' s='7'/>
 </Attr>
 </Id>
 </Concrete_Constants>
 <Properties>
 <Attr>
-<Pos l='25' c='1' s='10'/>
+<Pos l='18' c='1' s='10'/>
 </Attr>
 <Nary_Pred op='&amp;'>
 <Exp_Comparison op=':'>
 <Attr>
-<Pos l='27' c='11' s='1'/>
+<Pos l='20' c='11' s='1'/>
 </Attr>
 <Id value='total' typref='1'>
 <Attr>
-<Pos l='27' c='5' s='5'/>
+<Pos l='20' c='5' s='5'/>
 </Attr>
 </Id>
 <Id value='NAT1' typref='2'>
 <Attr>
-<Pos l='27' c='13' s='4'/>
+<Pos l='20' c='13' s='4'/>
 </Attr>
 </Id>
 </Exp_Comparison>
 <Exp_Comparison op=':'>
 <Attr>
-<Pos l='28' c='16' s='1'/>
+<Pos l='21' c='16' s='1'/>
 </Attr>
 <Id value='capacity' typref='1'>
 <Attr>
-<Pos l='28' c='7' s='8'/>
+<Pos l='21' c='7' s='8'/>
 </Attr>
 </Id>
 <Id value='NAT1' typref='2'>
 <Attr>
-<Pos l='28' c='18' s='4'/>
+<Pos l='21' c='18' s='4'/>
 </Attr>
 </Id>
 </Exp_Comparison>
 <Exp_Comparison op='&lt;i'>
 <Attr>
-<Pos l='29' c='16' s='1'/>
+<Pos l='22' c='16' s='1'/>
 </Attr>
 <Id value='capacity' typref='1'>
 <Attr>
-<Pos l='29' c='7' s='8'/>
+<Pos l='22' c='7' s='8'/>
 </Attr>
 </Id>
 <Id value='total' typref='1'>
 <Attr>
-<Pos l='29' c='18' s='5'/>
+<Pos l='22' c='18' s='5'/>
 </Attr>
 </Id>
 </Exp_Comparison>
 <Exp_Comparison op='='>
 <Attr>
-<Pos l='30' c='22' s='1'/>
+<Pos l='23' c='22' s='1'/>
 </Attr>
 <Unary_Exp op='card' typref='1'>
 <Attr>
-<Pos l='30' c='7' s='4'/>
+<Pos l='23' c='7' s='4'/>
 </Attr>
 <Id value='AIRCRAFT' typref='8'>
 <Attr>
-<Pos l='30' c='12' s='8'/>
+<Pos l='23' c='12' s='8'/>
 </Attr>
 </Id>
 </Unary_Exp>
 <Id value='total' typref='1'>
 <Attr>
-<Pos l='30' c='24' s='5'/>
+<Pos l='23' c='24' s='5'/>
 </Attr>
 </Id>
 </Exp_Comparison>
 <Exp_Comparison op='='>
 <Attr>
-<Pos l='34' c='12' s='1'/>
+<Pos l='24' c='12' s='1'/>
 </Attr>
 <Id value='mapw' typref='1'>
 <Attr>
-<Pos l='34' c='7' s='4'/>
+<Pos l='24' c='7' s='4'/>
 </Attr>
 </Id>
 <Integer_Literal value='3' typref='1'>
 <Attr>
-<Pos l='34' c='14' s='1'/>
+<Pos l='24' c='14' s='1'/>
 </Attr>
 </Integer_Literal>
 </Exp_Comparison>
 <Exp_Comparison op='='>
 <Attr>
-<Pos l='35' c='12' s='1'/>
+<Pos l='25' c='12' s='1'/>
 </Attr>
 <Id value='maph' typref='1'>
 <Attr>
-<Pos l='35' c='7' s='4'/>
+<Pos l='25' c='7' s='4'/>
 </Attr>
 </Id>
 <Integer_Literal value='3' typref='1'>
 <Attr>
-<Pos l='35' c='14' s='1'/>
+<Pos l='25' c='14' s='1'/>
 </Attr>
 </Integer_Literal>
 </Exp_Comparison>
 <Exp_Comparison op='='>
 <Attr>
-<Pos l='38' c='12' s='1'/>
+<Pos l='26' c='12' s='1'/>
 </Attr>
 <Id value='mapa' typref='9'>
 <Attr>
-<Pos l='38' c='7' s='4'/>
+<Pos l='26' c='7' s='4'/>
 </Attr>
 </Id>
 <Binary_Exp op='*s' typref='9'>
 <Attr>
-<Pos l='38' c='24' s='1'/>
+<Pos l='26' c='24' s='1'/>
 </Attr>
 <Binary_Exp op='..' typref='2'>
 <Attr>
-<Pos l='38' c='16' s='2'/>
+<Pos l='26' c='16' s='2'/>
 </Attr>
 <Integer_Literal value='0' typref='1'>
 <Attr>
-<Pos l='38' c='15' s='1'/>
+<Pos l='26' c='15' s='1'/>
 </Attr>
 </Integer_Literal>
 <Id value='maph' typref='1'>
 <Attr>
-<Pos l='38' c='18' s='4'/>
+<Pos l='26' c='18' s='4'/>
 </Attr>
 </Id>
 </Binary_Exp>
 <Binary_Exp op='..' typref='2'>
 <Attr>
-<Pos l='38' c='28' s='2'/>
+<Pos l='26' c='28' s='2'/>
 </Attr>
 <Integer_Literal value='0' typref='1'>
 <Attr>
-<Pos l='38' c='27' s='1'/>
+<Pos l='26' c='27' s='1'/>
 </Attr>
 </Integer_Literal>
 <Id value='mapw' typref='1'>
 <Attr>
-<Pos l='38' c='30' s='4'/>
+<Pos l='26' c='30' s='4'/>
 </Attr>
 </Id>
 </Binary_Exp>
@@ -242,53 +242,53 @@
 </Exp_Comparison>
 <Exp_Comparison op='&lt;:'>
 <Attr>
-<Pos l='42' c='15' s='2'/>
+<Pos l='29' c='15' s='2'/>
 </Attr>
 <Id value='airport' typref='10'>
 <Attr>
-<Pos l='42' c='7' s='7'/>
+<Pos l='29' c='7' s='7'/>
 </Attr>
 </Id>
 <Struct typref='10'>
 <Attr>
-<Pos l='42' c='18' s='6'/>
+<Pos l='29' c='18' s='6'/>
 </Attr>
 <Record_Item label='xx'>
 <Attr>
-<Pos l='42' c='28' s='2'/>
+<Pos l='29' c='28' s='2'/>
 </Attr>
 <Binary_Exp op='..' typref='2'>
 <Attr>
-<Pos l='42' c='32' s='2'/>
+<Pos l='29' c='32' s='2'/>
 </Attr>
 <Integer_Literal value='0' typref='1'>
 <Attr>
-<Pos l='42' c='31' s='1'/>
+<Pos l='29' c='31' s='1'/>
 </Attr>
 </Integer_Literal>
 <Id value='mapw' typref='1'>
 <Attr>
-<Pos l='42' c='34' s='4'/>
+<Pos l='29' c='34' s='4'/>
 </Attr>
 </Id>
 </Binary_Exp>
 </Record_Item>
 <Record_Item label='yy'>
 <Attr>
-<Pos l='42' c='44' s='2'/>
+<Pos l='29' c='44' s='2'/>
 </Attr>
 <Binary_Exp op='..' typref='2'>
 <Attr>
-<Pos l='42' c='48' s='2'/>
+<Pos l='29' c='48' s='2'/>
 </Attr>
 <Integer_Literal value='0' typref='1'>
 <Attr>
-<Pos l='42' c='47' s='1'/>
+<Pos l='29' c='47' s='1'/>
 </Attr>
 </Integer_Literal>
 <Id value='maph' typref='1'>
 <Attr>
-<Pos l='42' c='50' s='4'/>
+<Pos l='29' c='50' s='4'/>
 </Attr>
 </Id>
 </Binary_Exp>

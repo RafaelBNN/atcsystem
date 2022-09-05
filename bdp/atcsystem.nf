@@ -37,9 +37,9 @@ THEORY ListVariablesX IS
   External_Context_List_Variables(Machine(atcsystem))==(?);
   Context_List_Variables(Machine(atcsystem))==(?);
   Abstract_List_Variables(Machine(atcsystem))==(?);
-  Local_List_Variables(Machine(atcsystem))==(curralt,currspd,hdng,currpos,altlmt,spdlmt,ids,curr_aircrafts,zone_states);
-  List_Variables(Machine(atcsystem))==(curralt,currspd,hdng,currpos,altlmt,spdlmt,ids,curr_aircrafts,zone_states);
-  External_List_Variables(Machine(atcsystem))==(curralt,currspd,hdng,currpos,altlmt,spdlmt,ids,curr_aircrafts,zone_states)
+  Local_List_Variables(Machine(atcsystem))==(test,curralt,currspd,hdng,currpos,altlmt,spdlmt,ids,curr_aircrafts,zone_states);
+  List_Variables(Machine(atcsystem))==(test,curralt,currspd,hdng,currpos,altlmt,spdlmt,ids,curr_aircrafts,zone_states);
+  External_List_Variables(Machine(atcsystem))==(test,curralt,currspd,hdng,currpos,altlmt,spdlmt,ids,curr_aircrafts,zone_states)
 END
 &
 THEORY ListVisibleVariablesX IS
@@ -57,7 +57,7 @@ THEORY ListInvariantX IS
   Expanded_List_Invariant(Machine(atcsystem))==(btrue);
   Abstract_List_Invariant(Machine(atcsystem))==(btrue);
   Context_List_Invariant(Machine(atcsystem))==(btrue);
-  List_Invariant(Machine(atcsystem))==(zone_states: mapa --> STATE & ids: AIRCRAFT >+> NAT & spdlmt: AIRCRAFT +-> NAT1 & altlmt: AIRCRAFT +-> NAT1 & currpos: AIRCRAFT +-> struct(posx>>(0..3),posy>>(0..3)) & hdng: AIRCRAFT +-> DIRECTION & currspd: AIRCRAFT +-> NAT1 & curralt: AIRCRAFT +-> NAT1 & curr_aircrafts: NAT & card(ids) = curr_aircrafts & card(spdlmt) = curr_aircrafts & card(altlmt) = curr_aircrafts & card(hdng) = curr_aircrafts & card(currspd) = curr_aircrafts & card(curralt) = curr_aircrafts)
+  List_Invariant(Machine(atcsystem))==(zone_states: mapa --> STATE & test: NAT & ids: AIRCRAFT >+> 0..capacity-1 & spdlmt: AIRCRAFT +-> NAT1 & altlmt: AIRCRAFT +-> NAT1 & currpos: AIRCRAFT >+> struct(posx>>(0..mapw),posy>>(0..maph)) & hdng: AIRCRAFT +-> DIRECTION & currspd: AIRCRAFT +-> NAT1 & curralt: AIRCRAFT +-> NAT1 & curr_aircrafts: NAT & card(ids) = curr_aircrafts & card(spdlmt) = curr_aircrafts & card(altlmt) = curr_aircrafts & card(hdng) = curr_aircrafts & card(currspd) = curr_aircrafts & card(curralt) = curr_aircrafts)
 END
 &
 THEORY ListAssertionsX IS
@@ -76,9 +76,9 @@ THEORY ListExclusivityX IS
 END
 &
 THEORY ListInitialisationX IS
-  Expanded_List_Initialisation(Machine(atcsystem))==(zone_states,curr_aircrafts,ids,spdlmt,altlmt,currpos,hdng,currspd,curralt:={(0,0)|->CLEAR,(0,1)|->CLEAR,(0,2)|->CLEAR,(0,3)|->CLEAR,(1,0)|->CLEAR,(1,1)|->CLEAR,(1,2)|->CLEAR,(1,3)|->CLEAR,(2,0)|->CLEAR,(2,1)|->CLEAR,(2,2)|->CLEAR,(2,3)|->CLEAR,(3,0)|->CLEAR,(3,1)|->CLEAR,(3,2)|->CLEAR,(3,3)|->CLEAR},0,{},{},{},{},{},{},{});
+  Expanded_List_Initialisation(Machine(atcsystem))==(zone_states,curr_aircrafts,ids,spdlmt,altlmt,currpos,hdng,currspd,curralt,test:={(0,0)|->CLEAR,(0,1)|->CLEAR,(0,2)|->CLEAR,(0,3)|->CLEAR,(1,0)|->CLEAR,(1,1)|->CLEAR,(1,2)|->CLEAR,(1,3)|->CLEAR,(2,0)|->CLEAR,(2,1)|->CLEAR,(2,2)|->CLEAR,(2,3)|->CLEAR,(3,0)|->CLEAR,(3,1)|->CLEAR,(3,2)|->CLEAR,(3,3)|->CLEAR},0,{},{},{},{},{},{},{},0);
   Context_List_Initialisation(Machine(atcsystem))==(skip);
-  List_Initialisation(Machine(atcsystem))==(zone_states:={(0,0)|->CLEAR,(0,1)|->CLEAR,(0,2)|->CLEAR,(0,3)|->CLEAR,(1,0)|->CLEAR,(1,1)|->CLEAR,(1,2)|->CLEAR,(1,3)|->CLEAR,(2,0)|->CLEAR,(2,1)|->CLEAR,(2,2)|->CLEAR,(2,3)|->CLEAR,(3,0)|->CLEAR,(3,1)|->CLEAR,(3,2)|->CLEAR,(3,3)|->CLEAR} || curr_aircrafts:=0 || ids:={} || spdlmt:={} || altlmt:={} || currpos:={} || hdng:={} || currspd:={} || curralt:={})
+  List_Initialisation(Machine(atcsystem))==(zone_states:={(0,0)|->CLEAR,(0,1)|->CLEAR,(0,2)|->CLEAR,(0,3)|->CLEAR,(1,0)|->CLEAR,(1,1)|->CLEAR,(1,2)|->CLEAR,(1,3)|->CLEAR,(2,0)|->CLEAR,(2,1)|->CLEAR,(2,2)|->CLEAR,(2,3)|->CLEAR,(3,0)|->CLEAR,(3,1)|->CLEAR,(3,2)|->CLEAR,(3,3)|->CLEAR} || curr_aircrafts:=0 || ids:={} || spdlmt:={} || altlmt:={} || currpos:={} || hdng:={} || currspd:={} || curralt:={} || test:=0)
 END
 &
 THEORY ListParametersX IS
@@ -95,29 +95,32 @@ THEORY ListConstraintsX IS
 END
 &
 THEORY ListOperationsX IS
-  Internal_List_Operations(Machine(atcsystem))==(takeoff_from,change_direction,speedup,slowdown);
-  List_Operations(Machine(atcsystem))==(takeoff_from,change_direction,speedup,slowdown)
+  Internal_List_Operations(Machine(atcsystem))==(takeoff_from,change_direction,speedup,slowdown,advance_time);
+  List_Operations(Machine(atcsystem))==(takeoff_from,change_direction,speedup,slowdown,advance_time)
 END
 &
 THEORY ListInputX IS
   List_Input(Machine(atcsystem),takeoff_from)==(aa,pp);
   List_Input(Machine(atcsystem),change_direction)==(ii,hh);
   List_Input(Machine(atcsystem),speedup)==(ii);
-  List_Input(Machine(atcsystem),slowdown)==(ii)
+  List_Input(Machine(atcsystem),slowdown)==(ii);
+  List_Input(Machine(atcsystem),advance_time)==(ii)
 END
 &
 THEORY ListOutputX IS
   List_Output(Machine(atcsystem),takeoff_from)==(?);
   List_Output(Machine(atcsystem),change_direction)==(?);
   List_Output(Machine(atcsystem),speedup)==(?);
-  List_Output(Machine(atcsystem),slowdown)==(?)
+  List_Output(Machine(atcsystem),slowdown)==(?);
+  List_Output(Machine(atcsystem),advance_time)==(?)
 END
 &
 THEORY ListHeaderX IS
   List_Header(Machine(atcsystem),takeoff_from)==(takeoff_from(aa,pp));
   List_Header(Machine(atcsystem),change_direction)==(change_direction(ii,hh));
   List_Header(Machine(atcsystem),speedup)==(speedup(ii));
-  List_Header(Machine(atcsystem),slowdown)==(slowdown(ii))
+  List_Header(Machine(atcsystem),slowdown)==(slowdown(ii));
+  List_Header(Machine(atcsystem),advance_time)==(advance_time(ii))
 END
 &
 THEORY ListOperationGuardX END
@@ -126,10 +129,12 @@ THEORY ListPreconditionX IS
   List_Precondition(Machine(atcsystem),takeoff_from)==(aa: AIRCRAFT & pp: airport & zone_states(pp'xx,pp'yy) = CLEAR & curr_aircrafts<capacity);
   List_Precondition(Machine(atcsystem),change_direction)==(ii: ran(ids) & hh: DIRECTION-{hdng(ids~(ii))});
   List_Precondition(Machine(atcsystem),speedup)==(ii: ran(ids) & currspd(ids~(ii))<spdlmt(ids~(ii)));
-  List_Precondition(Machine(atcsystem),slowdown)==(ii: ran(ids) & currspd(ids~(ii))<1)
+  List_Precondition(Machine(atcsystem),slowdown)==(ii: ran(ids) & currspd(ids~(ii))<1);
+  List_Precondition(Machine(atcsystem),advance_time)==(ii: ran(ids))
 END
 &
 THEORY ListSubstitutionX IS
+  Expanded_List_Substitution(Machine(atcsystem),advance_time)==(ii: ran(ids) | @(aa,pos).(aa = ids~(ii) & pos = currpos(aa) ==> (hdng(aa) = NN ==> (currpos(aa)'posy>=currspd(aa) ==> currpos:=currpos<+{aa|->rec(posx>>pos'posx,posy>>pos'posy-currspd(aa))} [] not(currpos(aa)'posy>=currspd(aa)) ==> skip) [] not(hdng(aa) = NN) ==> (hdng(aa) = SS ==> (currpos(aa)'posy<=maph-currspd(aa) ==> currpos:=currpos<+{aa|->rec(posx>>pos'posx,posy>>pos'posy+currspd(aa))} [] not(currpos(aa)'posy<=maph-currspd(aa)) ==> skip) [] not(hdng(aa) = SS) ==> (hdng(aa) = WW ==> (currpos(aa)'posx>=currspd(aa) ==> currpos:=currpos<+{aa|->rec(posx>>pos'posx-currspd(aa),posy>>pos'posy)} [] not(currpos(aa)'posx>=currspd(aa)) ==> skip) [] not(hdng(aa) = WW) ==> (currpos(aa)'posx<=currspd(aa) ==> currpos:=currpos<+{aa|->rec(posx>>pos'posx+currspd(aa),posy>>pos'posy)} [] not(currpos(aa)'posx<=currspd(aa)) ==> skip))))));
   Expanded_List_Substitution(Machine(atcsystem),slowdown)==(ii: ran(ids) & currspd(ids~(ii))<1 | currspd:=currspd<+{ids~(ii)|->currspd(ids~(ii))-1});
   Expanded_List_Substitution(Machine(atcsystem),speedup)==(ii: ran(ids) & currspd(ids~(ii))<spdlmt(ids~(ii)) | currspd:=currspd<+{ids~(ii)|->currspd(ids~(ii))+1});
   Expanded_List_Substitution(Machine(atcsystem),change_direction)==(ii: ran(ids) & hh: DIRECTION-{hdng(ids~(ii))} | hdng:=hdng<+{ids~(ii)|->hh});
@@ -137,7 +142,8 @@ THEORY ListSubstitutionX IS
   List_Substitution(Machine(atcsystem),takeoff_from)==(ids:=ids\/{aa|->curr_aircrafts+1} || spdlmt:=spdlmt\/{aa|->1} || altlmt:=altlmt\/{aa|->1} || hdng:=hdng\/{aa|->NN} || currspd:=currspd\/{aa|->3} || curralt:=curralt\/{aa|->3} || curr_aircrafts:=curr_aircrafts+1 || zone_states(pp'xx,pp'yy):=OCCUPIED);
   List_Substitution(Machine(atcsystem),change_direction)==(hdng(ids~(ii)):=hh);
   List_Substitution(Machine(atcsystem),speedup)==(currspd(ids~(ii)):=currspd(ids~(ii))+1);
-  List_Substitution(Machine(atcsystem),slowdown)==(currspd(ids~(ii)):=currspd(ids~(ii))-1)
+  List_Substitution(Machine(atcsystem),slowdown)==(currspd(ids~(ii)):=currspd(ids~(ii))-1);
+  List_Substitution(Machine(atcsystem),advance_time)==(LET aa,pos BE aa = ids~(ii) & pos = currpos(aa) IN IF hdng(aa) = NN THEN IF currpos(aa)'posy>=currspd(aa) THEN currpos:=currpos<+{aa|->rec(posx>>pos'posx,posy>>pos'posy-currspd(aa))} END ELSIF hdng(aa) = SS THEN IF currpos(aa)'posy<=maph-currspd(aa) THEN currpos:=currpos<+{aa|->rec(posx>>pos'posx,posy>>pos'posy+currspd(aa))} END ELSIF hdng(aa) = WW THEN IF currpos(aa)'posx>=currspd(aa) THEN currpos:=currpos<+{aa|->rec(posx>>pos'posx-currspd(aa),posy>>pos'posy)} END ELSE IF currpos(aa)'posx<=currspd(aa) THEN currpos:=currpos<+{aa|->rec(posx>>pos'posx+currspd(aa),posy>>pos'posy)} END END END)
 END
 &
 THEORY ListConstantsX IS
@@ -190,11 +196,12 @@ THEORY ListANYVarX IS
   List_ANY_Var(Machine(atcsystem),takeoff_from)==(?);
   List_ANY_Var(Machine(atcsystem),change_direction)==(?);
   List_ANY_Var(Machine(atcsystem),speedup)==(?);
-  List_ANY_Var(Machine(atcsystem),slowdown)==(?)
+  List_ANY_Var(Machine(atcsystem),slowdown)==(?);
+  List_ANY_Var(Machine(atcsystem),advance_time)==(?)
 END
 &
 THEORY ListOfIdsX IS
-  List_Of_Ids(Machine(atcsystem)) == (? | ? | curralt,currspd,hdng,currpos,altlmt,spdlmt,ids,curr_aircrafts,zone_states | ? | takeoff_from,change_direction,speedup,slowdown | ? | seen(Machine(atcsystem_ctx)) | ? | atcsystem);
+  List_Of_Ids(Machine(atcsystem)) == (? | ? | test,curralt,currspd,hdng,currpos,altlmt,spdlmt,ids,curr_aircrafts,zone_states | ? | takeoff_from,change_direction,speedup,slowdown,advance_time | ? | seen(Machine(atcsystem_ctx)) | ? | atcsystem);
   List_Of_HiddenCst_Ids(Machine(atcsystem)) == (? | ?);
   List_Of_VisibleCst_Ids(Machine(atcsystem)) == (?);
   List_Of_VisibleVar_Ids(Machine(atcsystem)) == (? | ?);
@@ -207,11 +214,11 @@ THEORY ListOfIdsX IS
 END
 &
 THEORY VariablesEnvX IS
-  Variables(Machine(atcsystem)) == (Type(curralt) == Mvl(SetOf(atype(AIRCRAFT,?,?)*btype(INTEGER,?,?)));Type(currspd) == Mvl(SetOf(atype(AIRCRAFT,?,?)*btype(INTEGER,?,?)));Type(hdng) == Mvl(SetOf(atype(AIRCRAFT,?,?)*etype(DIRECTION,?,?)));Type(currpos) == Mvl(SetOf(atype(AIRCRAFT,?,?)*rtype((posx: btype(INTEGER,?,?)),posy: btype(INTEGER,?,?))));Type(altlmt) == Mvl(SetOf(atype(AIRCRAFT,?,?)*btype(INTEGER,?,?)));Type(spdlmt) == Mvl(SetOf(atype(AIRCRAFT,?,?)*btype(INTEGER,?,?)));Type(ids) == Mvl(SetOf(atype(AIRCRAFT,?,?)*btype(INTEGER,?,?)));Type(curr_aircrafts) == Mvl(btype(INTEGER,?,?));Type(zone_states) == Mvl(SetOf(btype(INTEGER,?,?)*btype(INTEGER,?,?)*etype(STATE,0,1))))
+  Variables(Machine(atcsystem)) == (Type(test) == Mvl(btype(INTEGER,?,?));Type(curralt) == Mvl(SetOf(atype(AIRCRAFT,?,?)*btype(INTEGER,?,?)));Type(currspd) == Mvl(SetOf(atype(AIRCRAFT,?,?)*btype(INTEGER,?,?)));Type(hdng) == Mvl(SetOf(atype(AIRCRAFT,?,?)*etype(DIRECTION,?,?)));Type(currpos) == Mvl(SetOf(atype(AIRCRAFT,?,?)*rtype((posx: btype(INTEGER,?,?)),posy: btype(INTEGER,?,?))));Type(altlmt) == Mvl(SetOf(atype(AIRCRAFT,?,?)*btype(INTEGER,?,?)));Type(spdlmt) == Mvl(SetOf(atype(AIRCRAFT,?,?)*btype(INTEGER,?,?)));Type(ids) == Mvl(SetOf(atype(AIRCRAFT,?,?)*btype(INTEGER,?,?)));Type(curr_aircrafts) == Mvl(btype(INTEGER,?,?));Type(zone_states) == Mvl(SetOf(btype(INTEGER,?,?)*btype(INTEGER,?,?)*etype(STATE,0,1))))
 END
 &
 THEORY OperationsEnvX IS
-  Operations(Machine(atcsystem)) == (Type(slowdown) == Cst(No_type,btype(INTEGER,?,?));Type(speedup) == Cst(No_type,btype(INTEGER,?,?));Type(change_direction) == Cst(No_type,btype(INTEGER,?,?)*etype(DIRECTION,?,?));Type(takeoff_from) == Cst(No_type,atype(AIRCRAFT,?,?)*rtype((xx: btype(INTEGER,0,mapw)),yy: btype(INTEGER,0,maph))))
+  Operations(Machine(atcsystem)) == (Type(advance_time) == Cst(No_type,btype(INTEGER,?,?));Type(slowdown) == Cst(No_type,btype(INTEGER,?,?));Type(speedup) == Cst(No_type,btype(INTEGER,?,?));Type(change_direction) == Cst(No_type,btype(INTEGER,?,?)*etype(DIRECTION,?,?));Type(takeoff_from) == Cst(No_type,atype(AIRCRAFT,?,?)*rtype((xx: btype(INTEGER,0,mapw)),yy: btype(INTEGER,0,maph))))
 END
 &
 THEORY TCIntRdX IS

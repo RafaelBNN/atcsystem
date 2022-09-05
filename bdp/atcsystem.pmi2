@@ -1,40 +1,219 @@
 THEORY BalanceX IS
-atcsystem,6,0,0,2,0,0,0;
-Initialisation,1,0,0,0,0,0,0;
-Operation_takeoff_from,2,0,0,1,0,0,0;
-WellDefinednessPrecondition_takeoff_from,3,0,0,1,0,0,0
+atcsystem,59,0,0,27,0,0,0;
+Initialisation,7,0,0,6,0,0,0;
+Operation_change_direction,2,0,0,1,0,0,0;
+Operation_slowdown,2,0,0,1,0,0,0;
+Operation_speedup,2,0,0,0,0,0,0;
+Operation_takeoff_from,14,0,0,0,0,0,0;
+WellDefinednessInvariant,6,0,0,0,0,0,0;
+WellDefinednessPrecondition_change_direction,4,0,0,3,0,0,0;
+WellDefinednessPrecondition_slowdown,4,0,0,3,0,0,0;
+WellDefinednessPrecondition_speedup,6,0,0,4,0,0,0;
+WellDefinednessPrecondition_takeoff_from,2,0,0,1,0,0,0;
+WellDefinedness_change_direction,2,0,0,2,0,0,0;
+WellDefinedness_slowdown,4,0,0,3,0,0,0;
+WellDefinedness_speedup,4,0,0,3,0,0,0
 END
 &
 THEORY ProofState IS
+Proved(0);
 Unproved;
+Proved(0);
+Proved(0);
+Proved(0);
+Unproved;
+Proved(0);
+Proved(0);
+Proved(0);
+Unproved;
+Proved(0);
+Proved(0);
 Proved(0);
 Unproved;
 Proved(0);
 Unproved;
+Proved(0);
+Proved(0);
+Proved(0);
+Proved(0);
+Proved(0);
+Unproved;
+Proved(0);
+Proved(0);
+Proved(0);
+Unproved;
+Unproved;
+Unproved;
+Unproved;
+Unproved;
+Unproved;
+Unproved;
+Proved(0);
+Unproved;
+Unproved;
+Unproved;
+Unproved;
+Proved(0);
+Unproved;
+Unproved;
+Unproved;
+Unproved;
+Unproved;
+Unproved;
+Unproved;
+Unproved;
+Unproved;
+Unproved;
+Unproved;
+Unproved;
+Unproved;
+Unproved;
+Proved(0);
+Proved(0);
+Proved(0);
+Proved(0);
+Proved(0);
+Proved(0);
 Unproved
 END
 &
 THEORY MethodList IS
+pr;
 ?;
+pr;
+pr;
+pr;
+?;
+pr;
+pr;
+pr;
+?;
+pr;
+pr;
 pr;
 ?;
 pr;
 ?;
+pr;
+pr;
+pr;
+pr;
+pr;
+?;
+pr;
+pr;
+pr;
+?;
+?;
+?;
+?;
+?;
+?;
+?;
+pr;
+?;
+?;
+?;
+?;
+pr;
+?;
+?;
+?;
+?;
+?;
+?;
+?;
+?;
+?;
+?;
+?;
+?;
+?;
+?;
+pr;
+pr;
+pr;
+pr;
+pr;
+pr;
 ?
 END
 &
 THEORY PassList IS
+Force(0),?;
 Force(0),(?; 0);
+Force(0),?;
+Force(0),?;
+Force(0),?;
+Force(0),(?; 0);
+Force(0),?;
+Force(0),?;
+Force(0),?;
+Force(0),(?; 0);
+Force(0),?;
+Force(0),?;
 Force(0),?;
 Force(0),(?; 0);
 Force(0),?;
 Force(0),(?; 0);
+Force(0),?;
+Force(0),?;
+Force(0),?;
+Force(0),?;
+Force(0),?;
+Force(0),(?; 0);
+Force(0),?;
+Force(0),?;
+Force(0),?;
+Force(0),(?; 0);
+Force(0),(?; 0);
+Force(0),(?; 0);
+Force(0),(?; 0);
+Force(0),(?; 0);
+Force(0),(?; 0);
+Force(0),(?; 0);
+Force(0),?;
+Force(0),(?; 0);
+Force(0),(?; 0);
+Force(0),(?; 0);
+Force(0),(?; 0);
+Force(0),?;
+Force(0),(?; 0);
+Force(0),(?; 0);
+Force(0),(?; 0);
+Force(0),(?; 0);
+Force(0),(?; 0);
+Force(0),(?; 0);
+Force(0),(?; 0);
+Force(0),(?; 0);
+Force(0),(?; 0);
+Force(0),(?; 0);
+Force(0),(?; 0);
+Force(0),(?; 0);
+Force(0),(?; 0);
+Force(0),(?; 0);
+Force(0),?;
+Force(0),?;
+Force(0),?;
+Force(0),?;
+Force(0),?;
+Force(0),?;
 Force(0),(?; 0)
 END
 &
 THEORY Status IS
-atcsystem,6,0,2,0,0,0;
-Initialisation,1,0,0,0,0,0;
-Operation_takeoff_from,2,0,1,0,0,0;
-WellDefinednessPrecondition_takeoff_from,3,0,1,0,0,0
+atcsystem,59,0,27,0,0,0;
+Initialisation,7,0,6,0,0,0;
+Operation_change_direction,2,0,1,0,0,0;
+Operation_slowdown,2,0,1,0,0,0;
+Operation_speedup,2,0,0,0,0,0;
+Operation_takeoff_from,14,0,0,0,0,0;
+WellDefinednessInvariant,6,0,0,0,0,0;
+WellDefinednessPrecondition_change_direction,4,0,3,0,0,0;
+WellDefinednessPrecondition_slowdown,4,0,3,0,0,0;
+WellDefinednessPrecondition_speedup,6,0,4,0,0,0;
+WellDefinednessPrecondition_takeoff_from,2,0,1,0,0,0;
+WellDefinedness_change_direction,2,0,2,0,0,0;
+WellDefinedness_slowdown,4,0,3,0,0,0;
+WellDefinedness_speedup,4,0,3,0,0,0
 END
