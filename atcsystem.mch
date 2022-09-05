@@ -69,7 +69,6 @@ OPERATIONS
         aa : AIRCRAFT
         & pp : airport
         & zone_states(pp'xx, pp'yy) = CLEAR
-//        & zone_states(prj1(pp), prj2(pp)) = CLEAR
         & curr_aircrafts < capacity
     THEN
         ids := ids \/ {aa |-> curr_aircrafts + 1}
@@ -134,37 +133,5 @@ OPERATIONS
         END
     END
     
-//    advance_time =
-//    BEGIN
-//        test := 0 ||
-//        WHILE iter < curr_aircrafts DO
-//            LET aa BE aa = ids~(iter) IN
-//                IF hdng(aa) = NN THEN
-//                    IF currpos(aa)'posy >= currspd(aa) THEN
-//                        currpos(aa)'posy := currpos(aa)'posy - currspd(aa)
-//                    END
-//                ELSIF hdng(aa) = SS THEN
-//                    IF currpos(aa)'posy <= maph - currspd(aa) THEN
-//                        currpos(aa)'posy := currpos(aa)'posy + currspd(aa)
-//                    END
-//                ELSIF hdng(aa) = WW THEN
-//                    IF currpos(aa)'posx >= currspd(aa) THEN
-//                        currpos(aa)'posx := currpos(aa)'posx - currspd(aa)
-//                    END
-//                ELSE // EE
-//                    IF currpos(aa)'posx <= currspd(aa) THEN
-//                        currpos(aa)'posx := currpos(aa)'posx + currspd(aa)
-//                    END
-//                END
-//            END
-//            test := test + 1 ||
-//            iter := ier + 1
-//        INVARIANT
-//            iter : NAT
-//            & iter <= curr_aircrafts
-//        VARIANT
-//            curr_aircrafts - iter
-//        END
-//    END
 
 END
