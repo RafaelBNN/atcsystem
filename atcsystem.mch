@@ -51,6 +51,7 @@ OPERATIONS
                 & (map(cc))'airport = TRUE
                 & (map(cc))'state = CLEAR}
             & ac : AIRCRAFT - dom(aircraftInfo)
+            & iid : NAT
             & iid : NAT - {ids | ids : NAT 
                 & # aa . (aa : AIRCRAFT & (aircraftInfo(aa))'idd = iid)}
             & hd : DIRECTION
