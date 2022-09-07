@@ -142,7 +142,7 @@ THEORY ListPropertiesX IS
   Abstract_List_Properties(Machine(atcsystem_ctx))==(btrue);
   Context_List_Properties(Machine(atcsystem_ctx))==(btrue);
   Inherited_List_Properties(Machine(atcsystem_ctx))==(btrue);
-  List_Properties(Machine(atcsystem_ctx))==(total: NAT1 & capacity: NAT1 & capacity<total & card(AIRCRAFT) = total & mapw = 3 & maph = 3 & DIRECTION: FIN(INTEGER) & not(DIRECTION = {}) & STATE: FIN(INTEGER) & not(STATE = {}) & AIRCRAFT: FIN(INTEGER) & not(AIRCRAFT = {}))
+  List_Properties(Machine(atcsystem_ctx))==(total: NAT1 & capacity = 3 & capacity<total & card(AIRCRAFT) = total & mapw = 3 & maph = 3 & DIRECTION: FIN(INTEGER) & not(DIRECTION = {}) & STATE: FIN(INTEGER) & not(STATE = {}) & AIRCRAFT: FIN(INTEGER) & not(AIRCRAFT = {}))
 END
 &
 THEORY ListSeenInfoX END

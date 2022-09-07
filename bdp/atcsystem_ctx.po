@@ -6,7 +6,7 @@ THEORY Formulas IS
 ((NAT) = (((0) .. (2147483647)))) & ((INT) = (((-2147483647) .. (2147483647))));
 ((1..4)*{DIRECTION}): FIN(NATURAL*{DIRECTION})& not(((1..4)*{DIRECTION}) = {}) & ((1..2)*{STATE}): FIN(NATURAL*{STATE})& not(((1..2)*{STATE}) = {}) & ((1..4)*{AIRCRAFT}): FIN(NATURAL*{AIRCRAFT})& not(((1..4)*{AIRCRAFT}) = {});
 ((total) : ((NAT-{0})));
-((capacity) : ((NAT-{0})));
+((capacity) = (3));
 (capacity +1 <= total);
 "Properties are well defined";
 ((((1..4)*{AIRCRAFT})) : (FIN(((1..4)*{AIRCRAFT}))))

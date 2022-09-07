@@ -16,7 +16,8 @@ CONCRETE_CONSTANTS
 PROPERTIES
 
     total : NAT1
-    & capacity : NAT1
+//    & capacity : NAT1
+    & capacity = 3
     & capacity < total
     & card ( AIRCRAFT ) = total
     & mapw = 3

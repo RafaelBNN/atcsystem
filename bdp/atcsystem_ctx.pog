@@ -18,7 +18,7 @@
     </Define>
     <Define name="ctx" hash="0"/>
     <Define name="seext" hash="0"/>
-    <Define name="lprp" hash="4216025033">
+    <Define name="lprp" hash="1462017903">
         <Set>
             <Id value="DIRECTION" typref="0"/>
             <Enumerated_Values>
@@ -48,9 +48,9 @@
             <Id value="total" typref="1" tag="C:\Users\Rafael\Desktop\2022.1\sistemas-inteligentes\atcsystem\bdp\atcsystem_ctx.bxml:1:3:1:1:1"/>
             <Id value="NAT1" typref="0" tag="C:\Users\Rafael\Desktop\2022.1\sistemas-inteligentes\atcsystem\bdp\atcsystem_ctx.bxml:1:3:1:1:2"/>
         </Exp_Comparison>
-        <Exp_Comparison op=":">
+        <Exp_Comparison op="=">
             <Id value="capacity" typref="1" tag="C:\Users\Rafael\Desktop\2022.1\sistemas-inteligentes\atcsystem\bdp\atcsystem_ctx.bxml:1:3:1:2:1"/>
-            <Id value="NAT1" typref="0" tag="C:\Users\Rafael\Desktop\2022.1\sistemas-inteligentes\atcsystem\bdp\atcsystem_ctx.bxml:1:3:1:2:2"/>
+            <Integer_Literal value="3" typref="1" tag="C:\Users\Rafael\Desktop\2022.1\sistemas-inteligentes\atcsystem\bdp\atcsystem_ctx.bxml:1:3:1:2:2"/>
         </Exp_Comparison>
         <Exp_Comparison op="&lt;i">
             <Id value="capacity" typref="1" tag="C:\Users\Rafael\Desktop\2022.1\sistemas-inteligentes\atcsystem\bdp\atcsystem_ctx.bxml:1:3:1:3:1"/>
@@ -103,7 +103,7 @@
             </Enumerated_Values>
         </Set>
     </Define>
-    <Proof_Obligation goalHash="1098923740">
+    <Proof_Obligation goalHash="2163408188">
         <Tag>WellDefinednessProperties</Tag>
         <Definition name="B definitions"/>
         <Definition name="ctx"/>
@@ -116,9 +116,9 @@
             </Exp_Comparison>
         </Local_Hyp>
         <Local_Hyp num="2">
-            <Exp_Comparison op=":">
+            <Exp_Comparison op="=">
                 <Id value="capacity" typref="1" tag="C:\Users\Rafael\Desktop\2022.1\sistemas-inteligentes\atcsystem\bdp\atcsystem_ctx.bxml:1:3:1:2:1"/>
-                <Id value="NAT1" typref="0" tag="C:\Users\Rafael\Desktop\2022.1\sistemas-inteligentes\atcsystem\bdp\atcsystem_ctx.bxml:1:3:1:2:2"/>
+                <Integer_Literal value="3" typref="1" tag="C:\Users\Rafael\Desktop\2022.1\sistemas-inteligentes\atcsystem\bdp\atcsystem_ctx.bxml:1:3:1:2:2"/>
             </Exp_Comparison>
         </Local_Hyp>
         <Local_Hyp num="3">
