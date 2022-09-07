@@ -4,15 +4,16 @@ END
 &
 THEORY Formulas IS
 ((NAT) = (((0) .. (2147483647)))) & ((INT) = (((-2147483647) .. (2147483647))));
-((1..4)*{DIRECTION}): FIN(NATURAL*{DIRECTION})& not(((1..4)*{DIRECTION}) = {}) & ((1..2)*{STATE}): FIN(NATURAL*{STATE})& not(((1..2)*{STATE}) = {}) & AIRCRAFT: FIN(INTEGER) & not(AIRCRAFT = {});
+((1..4)*{DIRECTION}): FIN(NATURAL*{DIRECTION})& not(((1..4)*{DIRECTION}) = {}) & ((1..2)*{STATE}): FIN(NATURAL*{STATE})& not(((1..2)*{STATE}) = {}) & ((1..4)*{AIRCRAFT}): FIN(NATURAL*{AIRCRAFT})& not(((1..4)*{AIRCRAFT}) = {});
 ((total) : ((NAT-{0})));
 ((capacity) : ((NAT-{0})));
 (capacity +1 <= total);
 "Properties are well defined";
-((AIRCRAFT) : (FIN(AIRCRAFT)))
+((((1..4)*{AIRCRAFT})) : (FIN(((1..4)*{AIRCRAFT}))))
 END
 &
 THEORY EnumerateX IS
+AIRCRAFT == {A1,A2,A3,A4};
 DIRECTION == {NN,SS,EE,WW};
 STATE == {CLEAR,OCCUPIED}
 END

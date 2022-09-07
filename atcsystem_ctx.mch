@@ -3,17 +3,15 @@ MACHINE
     
 SETS
     
-    DIRECTION = { NN, SS, EE, WW };
+    DIRECTION = {NN, SS, EE, WW};
     STATE = {CLEAR, OCCUPIED};
-    AIRCRAFT
+    AIRCRAFT = {A1, A2, A3, A4}
     
 CONSTANTS
     
     total, // quantidade total de aeronaves
     capacity, // quantidade maxima de aeronaves no mapa em um dado momento
-    mapw, maph, // altura e largura do mapa
-    mapa, // array bidimensional de tamanho mapw x maph
-    airport // conjunto com as localizacoes dos aeroportos
+    mapw, maph // altura e largura do mapa
     
 PROPERTIES
     
@@ -23,9 +21,5 @@ PROPERTIES
     & card(AIRCRAFT) = total
     & mapw = 3
     & maph = 3
-    & mapa = (0..maph) * (0..mapw)
-    
-//    & airport <: mapa
-    & airport <: struct(xx : (0..mapw), yy : (0..maph))
 
 END

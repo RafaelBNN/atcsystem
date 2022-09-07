@@ -18,7 +18,7 @@
     </Define>
     <Define name="ctx" hash="0"/>
     <Define name="seext" hash="0"/>
-    <Define name="lprp" hash="340478892">
+    <Define name="lprp" hash="4216025033">
         <Set>
             <Id value="DIRECTION" typref="0"/>
             <Enumerated_Values>
@@ -37,6 +37,12 @@
         </Set>
         <Set>
             <Id value="AIRCRAFT" typref="0"/>
+            <Enumerated_Values>
+                <Id value="A1" typref="1"/>
+                <Id value="A2" typref="1"/>
+                <Id value="A3" typref="1"/>
+                <Id value="A4" typref="1"/>
+            </Enumerated_Values>
         </Set>
         <Exp_Comparison op=":">
             <Id value="total" typref="1" tag="C:\Users\Rafael\Desktop\2022.1\sistemas-inteligentes\atcsystem\bdp\atcsystem_ctx.bxml:1:3:1:1:1"/>
@@ -64,43 +70,13 @@
             <Id value="maph" typref="1" tag="C:\Users\Rafael\Desktop\2022.1\sistemas-inteligentes\atcsystem\bdp\atcsystem_ctx.bxml:1:3:1:6:1"/>
             <Integer_Literal value="3" typref="1" tag="C:\Users\Rafael\Desktop\2022.1\sistemas-inteligentes\atcsystem\bdp\atcsystem_ctx.bxml:1:3:1:6:2"/>
         </Exp_Comparison>
-        <Exp_Comparison op="=">
-            <Id value="mapa" typref="2" tag="C:\Users\Rafael\Desktop\2022.1\sistemas-inteligentes\atcsystem\bdp\atcsystem_ctx.bxml:1:3:1:7:1"/>
-            <Binary_Exp op="*s" typref="2">
-                <Binary_Exp op=".." typref="0">
-                    <Integer_Literal value="0" typref="1" tag="C:\Users\Rafael\Desktop\2022.1\sistemas-inteligentes\atcsystem\bdp\atcsystem_ctx.bxml:1:3:1:7:2:1:1"/>
-                    <Id value="maph" typref="1" tag="C:\Users\Rafael\Desktop\2022.1\sistemas-inteligentes\atcsystem\bdp\atcsystem_ctx.bxml:1:3:1:7:2:1:2"/>
-                </Binary_Exp>
-                <Binary_Exp op=".." typref="0">
-                    <Integer_Literal value="0" typref="1" tag="C:\Users\Rafael\Desktop\2022.1\sistemas-inteligentes\atcsystem\bdp\atcsystem_ctx.bxml:1:3:1:7:2:2:1"/>
-                    <Id value="mapw" typref="1" tag="C:\Users\Rafael\Desktop\2022.1\sistemas-inteligentes\atcsystem\bdp\atcsystem_ctx.bxml:1:3:1:7:2:2:2"/>
-                </Binary_Exp>
-            </Binary_Exp>
-        </Exp_Comparison>
-        <Exp_Comparison op="&lt;:">
-            <Id value="airport" typref="3" tag="C:\Users\Rafael\Desktop\2022.1\sistemas-inteligentes\atcsystem\bdp\atcsystem_ctx.bxml:1:3:1:8:1"/>
-            <Struct typref="3">
-                <Record_Item label="xx">
-                    <Binary_Exp op=".." typref="0">
-                        <Integer_Literal value="0" typref="1" tag="C:\Users\Rafael\Desktop\2022.1\sistemas-inteligentes\atcsystem\bdp\atcsystem_ctx.bxml:1:3:1:8:2:1:1:1"/>
-                        <Id value="mapw" typref="1" tag="C:\Users\Rafael\Desktop\2022.1\sistemas-inteligentes\atcsystem\bdp\atcsystem_ctx.bxml:1:3:1:8:2:1:1:2"/>
-                    </Binary_Exp>
-                </Record_Item>
-                <Record_Item label="yy">
-                    <Binary_Exp op=".." typref="0">
-                        <Integer_Literal value="0" typref="1" tag="C:\Users\Rafael\Desktop\2022.1\sistemas-inteligentes\atcsystem\bdp\atcsystem_ctx.bxml:1:3:1:8:2:2:1:1"/>
-                        <Id value="maph" typref="1" tag="C:\Users\Rafael\Desktop\2022.1\sistemas-inteligentes\atcsystem\bdp\atcsystem_ctx.bxml:1:3:1:8:2:2:1:2"/>
-                    </Binary_Exp>
-                </Record_Item>
-            </Struct>
-        </Exp_Comparison>
     </Define>
     <Define name="inprp" hash="0"/>
     <Define name="inext" hash="0"/>
     <Define name="inv" hash="0"/>
     <Define name="ass" hash="0"/>
     <Define name="cst" hash="0"/>
-    <Define name="sets" hash="1867364112">
+    <Define name="sets" hash="2989916302">
         <Set>
             <Id value="DIRECTION" typref="0"/>
             <Enumerated_Values>
@@ -119,9 +95,15 @@
         </Set>
         <Set>
             <Id value="AIRCRAFT" typref="0"/>
+            <Enumerated_Values>
+                <Id value="A1" typref="1"/>
+                <Id value="A2" typref="1"/>
+                <Id value="A3" typref="1"/>
+                <Id value="A4" typref="1"/>
+            </Enumerated_Values>
         </Set>
     </Define>
-    <Proof_Obligation goalHash="3721171947">
+    <Proof_Obligation goalHash="1098923740">
         <Tag>WellDefinednessProperties</Tag>
         <Definition name="B definitions"/>
         <Definition name="ctx"/>
@@ -153,7 +135,7 @@
             <Goal>
                 <Exp_Comparison op=":">
                     <Id value="AIRCRAFT" typref="0" tag="C:\Users\Rafael\Desktop\2022.1\sistemas-inteligentes\atcsystem\bdp\atcsystem_ctx.bxml:1:3:1:4:1:1"/>
-                    <Unary_Exp op="FIN" typref="4">
+                    <Unary_Exp op="FIN" typref="2">
                         <Id value="AIRCRAFT" typref="0" tag="C:\Users\Rafael\Desktop\2022.1\sistemas-inteligentes\atcsystem\bdp\atcsystem_ctx.bxml:1:3:1:4:1:1"/>
                     </Unary_Exp>
                 </Exp_Comparison>
@@ -170,26 +152,6 @@
             <Id value="INTEGER"/>
         </Type>
         <Type id="2">
-            <Unary_Exp op="POW">
-                <Binary_Exp op="*">
-                    <Id value="INTEGER"/>
-                    <Id value="INTEGER"/>
-                </Binary_Exp>
-            </Unary_Exp>
-        </Type>
-        <Type id="3">
-            <Unary_Exp op="POW">
-                <Struct>
-                    <Record_Item label="xx">
-                        <Id value="INTEGER"/>
-                    </Record_Item>
-                    <Record_Item label="yy">
-                        <Id value="INTEGER"/>
-                    </Record_Item>
-                </Struct>
-            </Unary_Exp>
-        </Type>
-        <Type id="4">
             <Unary_Exp op="POW">
                 <Unary_Exp op="POW">
                     <Id value="INTEGER"/>
