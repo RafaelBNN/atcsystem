@@ -32,24 +32,20 @@ INVARIANT
                     ((aircraftInfo(aa))'currpos = (aircraftInfo(bb))'currpos =>
                     aa = bb))
             
-    // a posicao em que uma aeronave se encontra sempre deve estar ocupada
-    & ! aa . (aa : AIRCRAFT =>
-                ((map((aircraftInfo(aa))'currpos))'state = OCCUPIED))
-            
-    // se uma posicao esta ocupada, entao existe uma aeronave la
+    // uma posicao esta ocupada sse existe uma aeronave la
     & ! cc . (cc : dom(map) =>
                 ((map(cc))'state = OCCUPIED =>
                 # aa . (aa : dom(aircraftInfo) & (aircraftInfo(aa))'currpos = cc)))
-            
-    // uma posicao sem nenhuma aeronave deve estar livre
-    & ! cc . (cc : dom(map) =>
-                (! aa . (aa : dom(aircraftInfo) => ((aircraftInfo(aa))'currpos /= cc)) =>
-                (map(cc))'state = CLEAR))    
-    
-    // se uma posicao esta livre, entao nao existe nenhuma aeronave la
+    & ! aa . (aa : AIRCRAFT =>
+                ((map((aircraftInfo(aa))'currpos))'state = OCCUPIED))
+
+    // uma posicao esta livre sse nao existe nenhuma aeronave la
     & ! cc . (cc : dom(map) =>
                 ((map(cc))'state = CLEAR =>
                 ! aa . (aa : dom(aircraftInfo) => ((aircraftInfo(aa))'currpos /= cc))))
+    & ! cc . (cc : dom(map) =>
+                (! aa . (aa : dom(aircraftInfo) => ((aircraftInfo(aa))'currpos /= cc)) =>
+                (map(cc))'state = CLEAR))    
     
 INITIALISATION
     
@@ -84,21 +80,35 @@ OPERATIONS
                             currpos : rec(xx : ap'xx, yy : ap'yy))}
             || map := map <+ {ap |-> rec(state : OCCUPIED, airport : TRUE)}
         END
+    END;
+    
+    landAircraft(aa) =
+    PRE
+        aa : dom(aircraftInfo)
+        & (aircraftInfo(aa))'currpos : {cc | cc : dom(map) & (map(cc))'airport = TRUE}
+    THEN
+        CHOICE
+            aircraftInfo := {aa} <<| aircraftInfo
+            || 
+            LET apos BE apos = (aircraftInfo(aa))'currpos IN
+                map := map <+ {apos |-> rec(state : CLEAR, airport : (map(apos))'airport)}
+            END
+        OR
+            aircraftInfo := aircraftInfo <+ {aa |-> rec(
+                                    idd : (aircraftInfo(aa))'idd,
+                                    hdng : WW,
+                                    currpos : (aircraftInfo(aa))'currpos)}
+        END
     END
     
-//    landAircraft(aa) =
-//    PRE
-//        aa : dom(aircraftInfo)
-//        & (aircrafInfo(aa))'currpos : {cc | cc : dom(map) & (map(cc))'airport = TRUE}
-//    THEN
-//        CHOICE
-//            
-//    END
-//    
 //    advanceTime =
 //    BEGIN
 //        aircraftInfo := aircraftInfo <+
-//                        {aa |-> rec
+//                        {aa |-> rec(idd : (aircraftInfo(aa))'idd,
+//                                hdng : (aircraftInfo(aa))'hdng,
+//                                currpos : nextpos) |
+//                         aa : dom(map) 
+//                         & nextpos : dom(map)}
 //    END
 
 END
