@@ -60,25 +60,29 @@ INITIALISATION
 OPERATIONS
     
     makeAircraft =
+    PRE
+        card(aircraftInfo) < capacity
+    THEN
     BEGIN
-        ANY 
-            ap, ac, iid, hd
-        WHERE
-            ap : {cc | cc : dom(map)
-                & (map(cc))'airport = TRUE
-                & (map(cc))'state = CLEAR}
-            & ac : AIRCRAFT - dom(aircraftInfo)
-            & iid : NAT
-            & iid : NAT - {ids | ids : NAT 
-                & # aa . (aa : AIRCRAFT & (aircraftInfo(aa))'idd = iid)}
-            & hd : DIRECTION
-        THEN
-            aircraftInfo := aircraftInfo \/ 
-                    {ac |-> rec(
-                            idd : iid,
-                            hdng : hd,
-                            currpos : rec(xx : ap'xx, yy : ap'yy))}
-            || map := map <+ {ap |-> rec(state : OCCUPIED, airport : TRUE)}
+            ANY 
+                ap, ac, iid, hd
+            WHERE
+                ap : {cc | cc : dom(map)
+                    & (map(cc))'airport = TRUE
+                    & (map(cc))'state = CLEAR}
+                & ac : AIRCRAFT - dom(aircraftInfo)
+                & iid : NAT
+                & iid : NAT - {ids | ids : NAT 
+                    & # aa . (aa : AIRCRAFT & (aircraftInfo(aa))'idd = iid)}
+                & hd : DIRECTION
+            THEN
+                aircraftInfo := aircraftInfo \/ 
+                        {ac |-> rec(
+                                idd : iid,
+                                hdng : hd,
+                                currpos : rec(xx : ap'xx, yy : ap'yy))}
+                || map := map <+ {ap |-> rec(state : OCCUPIED, airport : TRUE)}
+            END
         END
     END;
     
@@ -98,6 +102,95 @@ OPERATIONS
                                     idd : (aircraftInfo(aa))'idd,
                                     hdng : WW,
                                     currpos : (aircraftInfo(aa))'currpos)}
+        END
+    END;
+    
+    advanceTime(aa) = 
+    PRE
+        aa : dom(aircraftInfo)
+    THEN
+        LET info BE info = aircraftInfo(aa) IN
+            IF (info'hdng = NN & (info'currpos)'yy > 0) THEN
+                IF ((map(rec(xx : (info'currpos)'xx, yy : (info'currpos)'yy - 1)))'state = CLEAR) THEN
+                    LET prevpos, nextpos BE
+                        prevpos = info'currpos
+                        & nextpos = rec(xx : (info'currpos)'xx, yy : (info'currpos)'yy - 1)
+                    IN
+                        aircraftInfo := aircraftInfo <+ {aa |-> rec(
+                                                        idd : info'idd,
+                                                        hdng : info'hdng,
+                                                        currpos : rec(xx : (info'currpos)'xx, yy : (info'currpos)'yy - 1))}
+                        ||
+                        map := map <+ {
+                                nextpos |-> rec(
+                                state : OCCUPIED,
+                                airport : (map(info'currpos))'airport ),
+                                prevpos |-> rec(
+                                state : CLEAR,
+                                airport : (map(info'currpos))'airport )}
+                    END
+                END
+            ELSIF (info'hdng = SS & (info'currpos)'yy < maph) THEN
+                IF ((map(rec(xx : (info'currpos)'xx, yy : (info'currpos)'yy + 1)))'state = CLEAR) THEN
+                    LET prevpos, nextpos BE
+                        prevpos = info'currpos
+                        & nextpos = rec(xx : (info'currpos)'xx, yy : (info'currpos)'yy + 1)
+                    IN
+                        aircraftInfo := aircraftInfo <+ {aa |-> rec(
+                                                        idd : info'idd,
+                                                        hdng : info'hdng,
+                                                        currpos : rec(xx : (info'currpos)'xx, yy : (info'currpos)'yy + 1))}
+                        ||
+                        map := map <+ {
+                                nextpos |-> rec(
+                                state : OCCUPIED,
+                                airport : (map(info'currpos))'airport ),
+                                prevpos |-> rec(
+                                state : CLEAR,
+                                airport : (map(info'currpos))'airport )}
+                    END
+                END
+            ELSIF (info'hdng = WW & (info'currpos)'xx > 0) THEN
+                IF ((map(rec(xx : (info'currpos)'xx - 1, yy : (info'currpos)'yy)))'state = CLEAR) THEN
+                    LET prevpos, nextpos BE
+                        prevpos = info'currpos
+                        & nextpos = rec(xx : (info'currpos)'xx - 1, yy : (info'currpos)'yy)
+                    IN
+                        aircraftInfo := aircraftInfo <+ {aa |-> rec(
+                                                        idd : info'idd,
+                                                        hdng : info'hdng,
+                                                        currpos : rec(xx : (info'currpos)'xx - 1, yy : (info'currpos)'yy))}
+                        ||
+                        map := map <+ {
+                                nextpos |-> rec(
+                                state : OCCUPIED,
+                                airport : (map(info'currpos))'airport ),
+                                prevpos |-> rec(
+                                state : CLEAR,
+                                airport : (map(info'currpos))'airport )}
+                   END
+                END
+            ELSIF (info'hdng = EE & (info'currpos)'xx < mapw) THEN
+                IF ((map(rec(xx : (info'currpos)'xx - 1, yy : (info'currpos)'yy)))'state = CLEAR) THEN
+                    LET prevpos, nextpos BE
+                        prevpos = info'currpos
+                        & nextpos = rec(xx : (info'currpos)'xx + 1, yy : (info'currpos)'yy)
+                    IN
+                        aircraftInfo := aircraftInfo <+ {aa |-> rec(
+                                                        idd : info'idd,
+                                                        hdng : info'hdng,
+                                                        currpos : rec(xx : (info'currpos)'xx + 1, yy : (info'currpos)'yy))}
+                        ||
+                        map := map <+ {
+                                nextpos |-> rec(
+                                state : OCCUPIED,
+                                airport : (map(info'currpos))'airport ),
+                                prevpos |-> rec(
+                                state : CLEAR,
+                                airport : (map(info'currpos))'airport )}
+                   END
+                END
+            END
         END
     END
     
