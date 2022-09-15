@@ -192,6 +192,38 @@ OPERATIONS
                 END
             END
         END
+    END;
+    
+    advanceTime2(nextPositions) =
+    PRE
+        nextPositions : AIRCRAFT +-> (INT*INT)
+        & nextPositions = { aa,pp |
+                aa : AIRCRAFT & aa : dom(aircraftInfo) & pp : (INT*INT) &
+                ((aircraftInfo(aa))'hdng = NN =>
+                    pp = (((aircraftInfo(aa))'currpos)'xx,
+                          ((aircraftInfo(aa))'currpos)'yy-1)) &
+                ((aircraftInfo(aa))'hdng = SS =>
+                    pp = (((aircraftInfo(aa))'currpos)'xx,
+                          ((aircraftInfo(aa))'currpos)'yy+1)) &
+                ((aircraftInfo(aa))'hdng = EE =>
+                    pp = (((aircraftInfo(aa))'currpos)'xx+1,
+                          ((aircraftInfo(aa))'currpos)'yy)) &
+                ((aircraftInfo(aa))'hdng = WW =>
+                    pp = (((aircraftInfo(aa))'currpos)'xx-1,
+                          ((aircraftInfo(aa))'currpos)'yy))
+            }
+       & card(dom(nextPositions)) = card(ran(nextPositions))
+       & ! pp . (pp : ran(nextPositions) =>
+               (prj1(INT,INT))(pp) >= 0 & (prj2(INT,INT))(pp) >= 0 &
+               (prj1(INT,INT))(pp) <= mapw & (prj2(INT,INT))(pp) <= maph)
+    THEN
+        aircraftInfo := { aa,ii |
+                aa : dom(nextPositions) &                
+                ii = rec(idd : (aircraftInfo(aa))'idd,
+                         hdng : (aircraftInfo(aa))'hdng,
+                         currpos : rec(xx : (prj1(INT,INT))(nextPositions(aa)),
+                                       yy : (prj2(INT,INT))(nextPositions(aa))))
+            }
     END
     
 //    advanceTime =
