@@ -110,9 +110,9 @@ THEORY ListPreconditionX END
 THEORY ListSubstitutionX END
 &
 THEORY ListConstantsX IS
-  List_Valuable_Constants(Machine(atcsystem_ctx))==(total,capacity,mapw,maph);
+  List_Valuable_Constants(Machine(atcsystem_ctx))==(total,capacity,mapw,maph,map,airport);
   Inherited_List_Constants(Machine(atcsystem_ctx))==(?);
-  List_Constants(Machine(atcsystem_ctx))==(total,capacity,mapw,maph)
+  List_Constants(Machine(atcsystem_ctx))==(total,capacity,mapw,maph,map,airport)
 END
 &
 THEORY ListSetsX IS
@@ -124,10 +124,9 @@ THEORY ListSetsX IS
   Inherited_List_Enumerated(Machine(atcsystem_ctx))==(?);
   Inherited_List_Defered(Machine(atcsystem_ctx))==(?);
   Inherited_List_Sets(Machine(atcsystem_ctx))==(?);
-  List_Enumerated(Machine(atcsystem_ctx))==(DIRECTION,STATE,AIRCRAFT);
+  List_Enumerated(Machine(atcsystem_ctx))==(DIRECTION,AIRCRAFT);
   List_Defered(Machine(atcsystem_ctx))==(?);
-  List_Sets(Machine(atcsystem_ctx))==(DIRECTION,STATE,AIRCRAFT);
-  Set_Definition(Machine(atcsystem_ctx),STATE)==({CLEAR,OCCUPIED});
+  List_Sets(Machine(atcsystem_ctx))==(DIRECTION,AIRCRAFT);
   Set_Definition(Machine(atcsystem_ctx),AIRCRAFT)==({A1,A2,A3,A4})
 END
 &
@@ -142,7 +141,7 @@ THEORY ListPropertiesX IS
   Abstract_List_Properties(Machine(atcsystem_ctx))==(btrue);
   Context_List_Properties(Machine(atcsystem_ctx))==(btrue);
   Inherited_List_Properties(Machine(atcsystem_ctx))==(btrue);
-  List_Properties(Machine(atcsystem_ctx))==(total: NAT1 & capacity = 3 & capacity<total & card(AIRCRAFT) = total & mapw = 3 & maph = 3 & DIRECTION: FIN(INTEGER) & not(DIRECTION = {}) & STATE: FIN(INTEGER) & not(STATE = {}) & AIRCRAFT: FIN(INTEGER) & not(AIRCRAFT = {}))
+  List_Properties(Machine(atcsystem_ctx))==(total: NAT1 & capacity: NAT1 & capacity = 3 & capacity<total & card(AIRCRAFT) = total & mapw = 3 & maph = 3 & map = struct(xx>>(0..mapw),yy>>(0..maph)) & airport <: map & DIRECTION: FIN(INTEGER) & not(DIRECTION = {}) & AIRCRAFT: FIN(INTEGER) & not(AIRCRAFT = {}))
 END
 &
 THEORY ListSeenInfoX END
@@ -150,19 +149,19 @@ THEORY ListSeenInfoX END
 THEORY ListANYVarX END
 &
 THEORY ListOfIdsX IS
-  List_Of_Ids(Machine(atcsystem_ctx)) == (total,capacity,mapw,maph,DIRECTION,STATE,AIRCRAFT,NN,SS,EE,WW,CLEAR,OCCUPIED,A1,A2,A3,A4 | ? | ? | ? | ? | ? | ? | ? | atcsystem_ctx);
+  List_Of_Ids(Machine(atcsystem_ctx)) == (total,capacity,mapw,maph,map,airport,DIRECTION,AIRCRAFT,NN,SS,EE,WW,A1,A2,A3,A4 | ? | ? | ? | ? | ? | ? | ? | atcsystem_ctx);
   List_Of_HiddenCst_Ids(Machine(atcsystem_ctx)) == (? | ?);
-  List_Of_VisibleCst_Ids(Machine(atcsystem_ctx)) == (total,capacity,mapw,maph);
+  List_Of_VisibleCst_Ids(Machine(atcsystem_ctx)) == (total,capacity,mapw,maph,map,airport);
   List_Of_VisibleVar_Ids(Machine(atcsystem_ctx)) == (? | ?);
   List_Of_Ids_SeenBNU(Machine(atcsystem_ctx)) == (?: ?)
 END
 &
 THEORY SetsEnvX IS
-  Sets(Machine(atcsystem_ctx)) == (Type(DIRECTION) == Cst(SetOf(etype(DIRECTION,0,3)));Type(STATE) == Cst(SetOf(etype(STATE,0,1)));Type(AIRCRAFT) == Cst(SetOf(etype(AIRCRAFT,0,3))))
+  Sets(Machine(atcsystem_ctx)) == (Type(DIRECTION) == Cst(SetOf(etype(DIRECTION,0,3)));Type(AIRCRAFT) == Cst(SetOf(etype(AIRCRAFT,0,3))))
 END
 &
 THEORY ConstantsEnvX IS
-  Constants(Machine(atcsystem_ctx)) == (Type(NN) == Cst(etype(DIRECTION,0,3));Type(SS) == Cst(etype(DIRECTION,0,3));Type(EE) == Cst(etype(DIRECTION,0,3));Type(WW) == Cst(etype(DIRECTION,0,3));Type(CLEAR) == Cst(etype(STATE,0,1));Type(OCCUPIED) == Cst(etype(STATE,0,1));Type(A1) == Cst(etype(AIRCRAFT,0,3));Type(A2) == Cst(etype(AIRCRAFT,0,3));Type(A3) == Cst(etype(AIRCRAFT,0,3));Type(A4) == Cst(etype(AIRCRAFT,0,3));Type(total) == Cst(btype(INTEGER,?,?));Type(capacity) == Cst(btype(INTEGER,?,?));Type(mapw) == Cst(btype(INTEGER,?,?));Type(maph) == Cst(btype(INTEGER,?,?)))
+  Constants(Machine(atcsystem_ctx)) == (Type(NN) == Cst(etype(DIRECTION,0,3));Type(SS) == Cst(etype(DIRECTION,0,3));Type(EE) == Cst(etype(DIRECTION,0,3));Type(WW) == Cst(etype(DIRECTION,0,3));Type(A1) == Cst(etype(AIRCRAFT,0,3));Type(A2) == Cst(etype(AIRCRAFT,0,3));Type(A3) == Cst(etype(AIRCRAFT,0,3));Type(A4) == Cst(etype(AIRCRAFT,0,3));Type(total) == Cst(btype(INTEGER,?,?));Type(capacity) == Cst(btype(INTEGER,?,?));Type(mapw) == Cst(btype(INTEGER,?,?));Type(maph) == Cst(btype(INTEGER,?,?));Type(map) == Cst(SetOf(rtype((xx: btype(INTEGER,0,mapw)),yy: btype(INTEGER,0,maph))));Type(airport) == Cst(SetOf(rtype((xx: btype(INTEGER,0,mapw)),yy: btype(INTEGER,0,maph)))))
 END
 &
 THEORY TCIntRdX IS

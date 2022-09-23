@@ -1,11 +1,12 @@
 THEORY ProofList IS
-_f(1) & _f(2) & WellDefinednessProperties.1,(_f(3) & _f(4) & _f(5) & _f(6) => _f(7))
+_f(1) & _f(2) & WellDefinednessProperties.1,(_f(3) & _f(4) & _f(5) & _f(6) & _f(7) => _f(8))
 END
 &
 THEORY Formulas IS
 ((NAT) = (((0) .. (2147483647)))) & ((INT) = (((-2147483647) .. (2147483647))));
-((1..4)*{DIRECTION}): FIN(NATURAL*{DIRECTION})& not(((1..4)*{DIRECTION}) = {}) & ((1..2)*{STATE}): FIN(NATURAL*{STATE})& not(((1..2)*{STATE}) = {}) & ((1..4)*{AIRCRAFT}): FIN(NATURAL*{AIRCRAFT})& not(((1..4)*{AIRCRAFT}) = {});
+((1..4)*{DIRECTION}): FIN(NATURAL*{DIRECTION})& not(((1..4)*{DIRECTION}) = {}) & ((1..4)*{AIRCRAFT}): FIN(NATURAL*{AIRCRAFT})& not(((1..4)*{AIRCRAFT}) = {});
 ((total) : ((NAT-{0})));
+((capacity) : ((NAT-{0})));
 ((capacity) = (3));
 (capacity +1 <= total);
 "Properties are well defined";
@@ -14,6 +15,5 @@ END
 &
 THEORY EnumerateX IS
 AIRCRAFT == {A1,A2,A3,A4};
-DIRECTION == {NN,SS,EE,WW};
-STATE == {CLEAR,OCCUPIED}
+DIRECTION == {NN,SS,EE,WW}
 END
