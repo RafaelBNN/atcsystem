@@ -55,7 +55,7 @@ OPERATIONS
         aircraftInfo := {aa} <<| aircraftInfo
     END;
     
-    change_direction(aa, hh) =
+    changeDirection(aa, hh) =
     PRE
         aa : dom(aircraftInfo)
         & hh : DIRECTION

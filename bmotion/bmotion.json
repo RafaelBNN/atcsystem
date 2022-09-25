@@ -1,0 +1,7 @@
+{
+    "id": "atcsystem",
+    "template": "index.html",
+    "observers": "atcsystem.observers.json",
+    "events": "atcsystem.events.json",
+    "model": "../atcsystem.mch"
+}

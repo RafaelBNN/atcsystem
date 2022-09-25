@@ -25,5 +25,6 @@ PROPERTIES
     & maph = 3
     & map = struct(xx : (0..mapw), yy : (0..maph))
     & airport <: map
+    & card(airport) = 3
 
 END
