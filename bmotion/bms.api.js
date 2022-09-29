@@ -66,6 +66,34 @@ for(var i=1;i<=5;i++){
 
 }
 
+// observers to change aircraft objects rotation according to aircraftInfo
+for(var i=1;i<=5;i++){
+
+	bms.observe("formula", {
+		selector: "#aircraft" + i,
+		formulas: ["(aircraftInfo(A" + i + "))'hdng", "((aircraftInfo(A" + i + "))'currpos)'xx", "((aircraftInfo(A" + i + "))'currpos)'yy"],
+		trigger: function(origin, values) {
+
+			var xcenter = 28 + values[1]*40
+			var ycenter = 28 + values[2]*40
+			
+			if(values[0]=="NN"){
+				origin.attr("transform", "rotate(0 " + xcenter + " " + ycenter + ")")
+			}
+			else if(values[0]=="SS"){
+				origin.attr("transform", "rotate(180 " + xcenter + " " + ycenter + ")")
+			}
+			else if(values[0]=="EE"){
+				origin.attr("transform", "rotate(90 " + xcenter + " " + ycenter + ")")
+			}
+			else{
+				origin.attr("transform", "rotate(270 " + xcenter + " " + ycenter + ")")
+			}
+
+		}
+	})
+
+}
 
 // event handler that links advancetime button with operation
 bms.executeEvent({
