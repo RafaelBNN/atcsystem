@@ -7,7 +7,7 @@ SEES
     
 VARIABLES
     
-    aircraftInfo, time
+    aircraftInfo
     
 INVARIANT
     
@@ -15,13 +15,13 @@ INVARIANT
                                         hdng : DIRECTION,
                                         currpos : map
                                     )
-    & time : NAT
     & card(aircraftInfo) <= capacity
     
     // duas aeronaves nao podem ter a mesma posicao
     & ! (aa, bb) . (aa : AIRCRAFT & bb : AIRCRAFT =>
+                    (aa : dom(aircraftInfo) & bb : dom(aircraftInfo) =>
                     ((aircraftInfo(aa))'currpos = (aircraftInfo(bb))'currpos =>
-                    aa = bb))
+                    aa = bb)))
 
     
 INITIALISATION
@@ -30,7 +30,6 @@ INITIALISATION
                     A1 |-> rec(hdng : NN, currpos : rec(xx : 3, yy : 3)),
                     A2 |-> rec(hdng : NN, currpos : rec(xx : 0, yy : 0))
                     }
-    || time := 0
 
 OPERATIONS
     
@@ -59,14 +58,20 @@ OPERATIONS
     THEN
         aircraftInfo := {aa} <<| aircraftInfo
     END;
-    
-    changeDirection(aa, hh) =
+
+    turnRight(aa) =
     PRE
         aa : dom(aircraftInfo)
-        & hh : DIRECTION
-        & hh /= (aircraftInfo(aa))'hdng
     THEN
-        aircraftInfo := aircraftInfo <+ {aa |-> rec(hdng : hh, currpos : (aircraftInfo(aa))'currpos)}
+        IF (aircraftInfo(aa))'hdng = NN THEN
+            aircraftInfo := aircraftInfo <+ {aa |-> rec(hdng : EE, currpos : (aircraftInfo(aa))'currpos)}
+        ELSIF (aircraftInfo(aa))'hdng = EE THEN
+            aircraftInfo := aircraftInfo <+ {aa |-> rec(hdng : SS, currpos : (aircraftInfo(aa))'currpos)}
+        ELSIF (aircraftInfo(aa))'hdng = SS THEN
+            aircraftInfo := aircraftInfo <+ {aa |-> rec(hdng : WW, currpos : (aircraftInfo(aa))'currpos)}
+        ELSE
+            aircraftInfo := aircraftInfo <+ {aa |-> rec(hdng : NN, currpos : (aircraftInfo(aa))'currpos)}
+        END
     END;
     
     advanceTime(nextPositions) =
@@ -98,7 +103,6 @@ OPERATIONS
                          currpos : rec(xx : (prj1(INT,INT))(nextPositions(aa)),
                                        yy : (prj2(INT,INT))(nextPositions(aa))))
             }
-        || time := time + 1
     END
 
 END

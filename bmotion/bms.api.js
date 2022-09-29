@@ -42,22 +42,13 @@ TO DO:
 	* lembrar da ideia de deixar tudo transparente e so diminuir a transparencia se tiver uma aeronave la, por exemplo
 */
 
-// observer to change time text
-bms.observe("formula", {
-    selector: "#timetext",
-    formulas: ["time"],
-    trigger: function(origin, values){
-        origin.text(values[0])
-		console.log("Advanced time")
-    }
-})
-
-// observers to change aircraft objects positions according to aircraftInfo
+// observers to change aircraft objects position according to aircraftInfo
 for(var i=1;i<=5;i++){
 
 	bms.observe("formula", {
 		selector: "#aircraft" + i,
-		formulas: ["((aircraftInfo(A" + i + "))'currpos)'xx", "((aircraftInfo(A" + i + "))'currpos)'yy"], // queremos observar as coordenadas da aeronave
+		formulas: [	"((aircraftInfo(A" + i + "))'currpos)'xx",
+					"((aircraftInfo(A" + i + "))'currpos)'yy" ], // queremos observar as coordenadas da aeronave
 		trigger: function(origin, values) {
 			origin.attr("x", "" + (14 + (values[0]*40)))
 			origin.attr("y", "" + (14 + (values[1]*40)))
@@ -95,6 +86,22 @@ for(var i=1;i<=5;i++){
 
 }
 
+// observer to remove aircraft when they land
+for(var i=1;i<=5;i++){
+
+	bms.observe("formula", {
+		selector: "#aircraft" + i,
+		formulas: ["A" + i + " : dom(aircraftInfo)"],
+		trigger: function(origin, values) {
+ 			if(values[0]=="FALSE"){
+ 				origin.attr("opacity", "0")
+ 				// origin.attr("y", "0")
+ 			}
+ 		}
+ 	})
+
+}
+
 // event handler that links advancetime button with operation
 bms.executeEvent({
 	selector: "#advancetime", // nome do objeto no svg
@@ -103,3 +110,16 @@ bms.executeEvent({
 	]
 });
 
+for(var i=1;i<=5;i++){
+
+	bms.executeEvent({
+		selector: "#aircraft" + i,
+		events: [{
+			name: "turnRight",
+			predicate: function(origin){
+				return "aa=A" + origin.attr("id").substring(8)
+			}
+		}]
+	})
+
+}
