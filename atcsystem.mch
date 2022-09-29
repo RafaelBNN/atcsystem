@@ -7,8 +7,7 @@ SEES
     
 VARIABLES
     
-    aircraftInfo, time,
-    auxInitPosA1x, auxInitPosA1y
+    aircraftInfo, time
     
 INVARIANT
     
@@ -24,15 +23,14 @@ INVARIANT
                     ((aircraftInfo(aa))'currpos = (aircraftInfo(bb))'currpos =>
                     aa = bb))
 
-    & auxInitPosA1x : NAT
-    & auxInitPosA1y : NAT
     
 INITIALISATION
     
-    aircraftInfo := {A1 |-> rec(hdng : NN, currpos : rec(xx : 3, yy : 3))}
+    aircraftInfo := {   
+                    A1 |-> rec(hdng : NN, currpos : rec(xx : 3, yy : 3)),
+                    A2 |-> rec(hdng : NN, currpos : rec(xx : 2, yy : 2))
+                    }
     || time := 0
-    || auxInitPosA1x := 3
-    || auxInitPosA1y := 3
 
 OPERATIONS
     
@@ -101,8 +99,6 @@ OPERATIONS
                                        yy : (prj2(INT,INT))(nextPositions(aa))))
             }
         || time := time + 1
-        || auxInitPosA1x := ((aircraftInfo(A1))'currpos)'xx
-        || auxInitPosA1y := ((aircraftInfo(A1))'currpos)'yy
     END
 
 END

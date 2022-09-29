@@ -37,11 +37,12 @@ TO DO:
 			- deixar botao cinza quando nao for possivel
 		- advanceTime
 			- deixar botao cinza quando nao for possivel
-	- uma ideia para a movimentacao eh ter um observer para aircraftInfo
+	- uma ideia para a movimentacao eh ter um observer para aircraftInfo DONE
 	- talvez deixar o numero de aeronaves disponivel ou icones de aeronaves "estacionadas" embaixo
 	* lembrar da ideia de deixar tudo transparente e so diminuir a transparencia se tiver uma aeronave la, por exemplo
 */
 
+// observer to change time text
 bms.observe("formula", {
     selector: "#timetext",
     formulas: ["time"],
@@ -51,19 +52,20 @@ bms.observe("formula", {
     }
 })
 
-// observer to change position of A1 in svg according to aircraftInfo
-bms.observe("formula", {
-    selector: "#aircraft1",
-    // formulas: ["auxInitPosA1x", "auxInitPosA1y"],
-    formulas: ["((aicraftInfo(A1))'currpos)'xx", "((aicraftInfo(A1))'currpos)'yy"], // queremos observar as coordenadas da aeronave
-    trigger: function(origin, values) {
-		// origin.attr("x", "0")
-        // origin.attr("y", "0")
-        origin.attr("x", "" + (14 + ((values[0]-1)*40)))
-        origin.attr("y", "" + (14 + ((values[1]-1)*40)))
-        console.log("to aqui")
-    }
-})
+// observers to change aircraft objects positions according to aircraftInfo
+for(var i=1;i<=5;i++){
+
+	bms.observe("formula", {
+		selector: "#aircraft" + i,
+		formulas: ["((aircraftInfo(A" + i + "))'currpos)'xx", "((aircraftInfo(A" + i + "))'currpos)'yy"], // queremos observar as coordenadas da aeronave
+		trigger: function(origin, values) {
+			origin.attr("x", "" + (14 + (values[0]*40)))
+			origin.attr("y", "" + (14 + (values[1]*40)))
+		}
+	})
+
+}
+
 
 // event handler that links advancetime button with operation
 bms.executeEvent({
