@@ -4,8 +4,7 @@ MACHINE
 SETS
     
     DIRECTION = {NN, SS, EE, WW};
-//    STATE = {CLEAR, OCCUPIED};
-    AIRCRAFT = {A1, A2, A3, A4}
+    AIRCRAFT = {A1, A2, A3, A4, A5}
     
 CONSTANTS
     
@@ -16,15 +15,17 @@ CONSTANTS
     
 PROPERTIES
     
-    total : NAT1
-    & capacity : NAT1
+    // total : NAT1
+    total = 5
+    // & capacity : NAT1
     & capacity = 3
-    & capacity < total
-    & card(AIRCRAFT) = total
-    & mapw = 3
-    & maph = 3
+    // & capacity < total
+    // & card(AIRCRAFT) = total
+    & mapw = 7
+    & maph = 7
     & map = struct(xx : (0..mapw), yy : (0..maph))
-    & airport <: map
-    & card(airport) = 3
+    // & airport <: map
+    & airport = {1 |-> rec(xx : 1, yy : 1), 2 |-> rec(xx : 1, yy : 7), 3 |-> rec(xx : 6, yy : 3), 4 |-> rec(xx : 5, yy : 6)}
+    // & card(airport) = 3
 
 END

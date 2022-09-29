@@ -7,7 +7,8 @@ SEES
     
 VARIABLES
     
-    aircraftInfo
+    aircraftInfo, time,
+    auxInitPosA1x, auxInitPosA1y
     
 INVARIANT
     
@@ -15,31 +16,37 @@ INVARIANT
                                         hdng : DIRECTION,
                                         currpos : map
                                     )
-            
+    & time : NAT
     & card(aircraftInfo) <= capacity
     
     // duas aeronaves nao podem ter a mesma posicao
     & ! (aa, bb) . (aa : AIRCRAFT & bb : AIRCRAFT =>
                     ((aircraftInfo(aa))'currpos = (aircraftInfo(bb))'currpos =>
                     aa = bb))
+
+    & auxInitPosA1x : NAT
+    & auxInitPosA1y : NAT
     
 INITIALISATION
     
-    aircraftInfo := {}    
-    
+    aircraftInfo := {A1 |-> rec(hdng : NN, currpos : rec(xx : 3, yy : 3))}
+    || time := 0
+    || auxInitPosA1x := 3
+    || auxInitPosA1y := 3
+
 OPERATIONS
     
-    makeAircraft =
+    makeAircraft(ap) =
     PRE
-        card(aircraftInfo) < capacity
+        ap : ran(airport)
+        & ! aa . (aa : dom(aircraftInfo) => (aircraftInfo(aa))'currpos /= ap)
+        & card(aircraftInfo) < capacity
     THEN
     BEGIN
             ANY 
-                ap, ac, hd
+                ac, hd
             WHERE
-                ap : airport
-                & ac : AIRCRAFT - dom(aircraftInfo)
-                & ! aa . (aa : dom(aircraftInfo) => (aircraftInfo(aa))'currpos /= ap)
+                ac : AIRCRAFT - dom(aircraftInfo)
                 & hd : DIRECTION
             THEN
                 aircraftInfo := aircraftInfo \/ {ac |-> rec(hdng : hd, currpos : ap)}
@@ -50,7 +57,7 @@ OPERATIONS
     landAircraft(aa) =
     PRE
         aa : dom(aircraftInfo)
-        & # cc . (cc : airport & (aircraftInfo(aa))'currpos = cc)
+        & # cc . (cc : ran(airport) & (aircraftInfo(aa))'currpos = cc)
     THEN
         aircraftInfo := {aa} <<| aircraftInfo
     END;
@@ -61,9 +68,7 @@ OPERATIONS
         & hh : DIRECTION
         & hh /= (aircraftInfo(aa))'hdng
     THEN
-        LET info BE info = aircraftInfo(aa) IN
-            info'hdng := hh
-        END
+        aircraftInfo := aircraftInfo <+ {aa |-> rec(hdng : hh, currpos : (aircraftInfo(aa))'currpos)}
     END;
     
     advanceTime(nextPositions) =
@@ -95,6 +100,9 @@ OPERATIONS
                          currpos : rec(xx : (prj1(INT,INT))(nextPositions(aa)),
                                        yy : (prj2(INT,INT))(nextPositions(aa))))
             }
+        || time := time + 1
+        || auxInitPosA1x := ((aircraftInfo(A1))'currpos)'xx
+        || auxInitPosA1y := ((aircraftInfo(A1))'currpos)'yy
     END
 
 END

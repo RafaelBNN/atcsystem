@@ -1,7 +1,11 @@
 {
     "id": "atcsystem",
+    "name": "Air Traffic Control System",
+    "model": "../atcsystem.mch",
     "template": "index.html",
     "observers": "atcsystem.observers.json",
     "events": "atcsystem.events.json",
-    "model": "../atcsystem.mch"
+    "autoOpen": [
+        "Events"
+    ]
 }
