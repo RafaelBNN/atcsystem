@@ -6,42 +6,6 @@ var angular = angular || {};
     angular = window.parent.angular;
 })();
 
-/* 
-DUVIDAS:
-	- como iterar pelos elementos do conjunto airport?
-		- talvez deixar como um conjunto pre-determinado
-		- ou transformar airport em um array
-	- para a demonstracao no bmotion, um mapa 8x8 pode ser feito ou eh exagero?
-	- 
-
-TO DO:
-	- comportamento inesperado quando ha mais de uma aeronave e uma delas tenta sair do mapa
-	- simular no prob DONE
-	- prestar atencao na inicializacao das constantes
-		- criar observer para mostrar aeroportos nos locais em que eles forem inicializados DONE
-			- adicionar numero fixo ou maximo de aeroportos DONE
-			- notar que airport eh um conjunto, entao nao eh trivial usar o elevador como exemplo,
-			  ja que todos os elementos de formulas eram elementos simples (e nao conjuntos)
-		- criar observer para total e capacity NAO PRECISA
-	- criar botoes
-		- makeAircraft DONE
-		- landAircraft
-			- tratar o caso em que mais de uma aeronave pode pousar
-			- deixar botao cinza quando nao for possivel
-		- changeDirection
-			- talvez mudar essa operation para turnLeft por exemplo DONE
-				- para mudar a direcao de uma aeronave, bastaria clicar nela DONE
-			- se continuar como changeDirection (uma ideia)
-				- selecionar aeronave para mudar de direcao
-				- aparecer conjunto de selecoes possiveis clicaveis
-			- deixar botao cinza quando nao for possivel
-		- advanceTime DONE
-			- deixar botao cinza quando nao for possivel
-	- uma ideia para a movimentacao eh ter um observer para aircraftInfo DONE
-	- talvez deixar o numero de aeronaves disponivel ou icones de aeronaves "estacionadas" embaixo
-	* lembrar da ideia de deixar tudo transparente e so diminuir a transparencia se tiver uma aeronave la, por exemplo
-*/
-
 // observers to put runways on the map according to `aiport` variable
 for(var i=1;i<=4;i++){
 
@@ -132,6 +96,7 @@ bms.executeEvent({
 	]
 });
 
+// event handler that allows to change direction of aircraft by clicking on it
 for(var i=1;i<=5;i++){
 
 	bms.executeEvent({
@@ -146,6 +111,7 @@ for(var i=1;i<=5;i++){
 
 }
 
+// event handler that allows creation of new aircraft by clicking on runways
 for(var i=1;i<=4;i++){
 
 	bms.executeEvent({
@@ -155,6 +121,19 @@ for(var i=1;i<=4;i++){
 			predicate: function(origin){
 				return "ap=airport(" + origin.attr("id").substring(6) + ")"
 			}
+		}]
+	})
+
+}
+
+// event handler that links landaircraft buttons with operations
+for(var i=1;i<=5;i++){
+
+	bms.executeEvent({
+		selector: "#landaircraft" + i,
+		events: [{
+			name: "landAircraft",
+			predicate: "aa=A" + i
 		}]
 	})
 
