@@ -18,29 +18,44 @@ TO DO:
 	- comportamento inesperado quando ha mais de uma aeronave e uma delas tenta sair do mapa
 	- simular no prob DONE
 	- prestar atencao na inicializacao das constantes
-		- criar observer para mostrar aeroportos nos locais em que eles forem inicializados
+		- criar observer para mostrar aeroportos nos locais em que eles forem inicializados DONE
 			- adicionar numero fixo ou maximo de aeroportos DONE
 			- notar que airport eh um conjunto, entao nao eh trivial usar o elevador como exemplo,
 			  ja que todos os elementos de formulas eram elementos simples (e nao conjuntos)
-		- criar observer para total e capacity
+		- criar observer para total e capacity NAO PRECISA
 	- criar botoes
-		- makeAircraft
+		- makeAircraft DONE
 		- landAircraft
 			- tratar o caso em que mais de uma aeronave pode pousar
 			- deixar botao cinza quando nao for possivel
 		- changeDirection
-			- talvez mudar essa operation para turnLeft por exemplo
-				- para mudar a direcao de uma aeronave, bastaria clicar nela
+			- talvez mudar essa operation para turnLeft por exemplo DONE
+				- para mudar a direcao de uma aeronave, bastaria clicar nela DONE
 			- se continuar como changeDirection (uma ideia)
 				- selecionar aeronave para mudar de direcao
 				- aparecer conjunto de selecoes possiveis clicaveis
 			- deixar botao cinza quando nao for possivel
-		- advanceTime
+		- advanceTime DONE
 			- deixar botao cinza quando nao for possivel
 	- uma ideia para a movimentacao eh ter um observer para aircraftInfo DONE
 	- talvez deixar o numero de aeronaves disponivel ou icones de aeronaves "estacionadas" embaixo
 	* lembrar da ideia de deixar tudo transparente e so diminuir a transparencia se tiver uma aeronave la, por exemplo
 */
+
+// observers to put runways on the map according to `aiport` variable
+for(var i=1;i<=4;i++){
+
+	bms.observe("formula", {
+		selector: "#runway" + i,
+		formulas: [	"(airport(" + i + "))'xx",
+					"(airport(" + i + "))'yy" ],
+		trigger: function(origin, values) {
+			origin.attr("x", "" + (12 + (values[0]*40)))
+			origin.attr("y", "" + (12 + (values[1]*40)))
+		}
+	})
+
+}
 
 // observers to change aircraft objects position according to aircraftInfo
 for(var i=1;i<=5;i++){
@@ -48,7 +63,8 @@ for(var i=1;i<=5;i++){
 	bms.observe("formula", {
 		selector: "#aircraft" + i,
 		formulas: [	"((aircraftInfo(A" + i + "))'currpos)'xx",
-					"((aircraftInfo(A" + i + "))'currpos)'yy" ], // queremos observar as coordenadas da aeronave
+					"((aircraftInfo(A" + i + "))'currpos)'yy",
+					"A" + i + " : dom(aircraftInfo)" ],
 		trigger: function(origin, values) {
 			origin.attr("x", "" + (14 + (values[0]*40)))
 			origin.attr("y", "" + (14 + (values[1]*40)))
@@ -62,7 +78,9 @@ for(var i=1;i<=5;i++){
 
 	bms.observe("formula", {
 		selector: "#aircraft" + i,
-		formulas: ["(aircraftInfo(A" + i + "))'hdng", "((aircraftInfo(A" + i + "))'currpos)'xx", "((aircraftInfo(A" + i + "))'currpos)'yy"],
+		formulas: [	"(aircraftInfo(A" + i + "))'hdng",
+					"((aircraftInfo(A" + i + "))'currpos)'xx",
+					"((aircraftInfo(A" + i + "))'currpos)'yy" ],
 		trigger: function(origin, values) {
 
 			var xcenter = 28 + values[1]*40
@@ -95,8 +113,12 @@ for(var i=1;i<=5;i++){
 		trigger: function(origin, values) {
  			if(values[0]=="FALSE"){
  				origin.attr("opacity", "0")
- 				// origin.attr("y", "0")
+				origin.attr("x", "300")
+				origin.attr("y", "300")
  			}
+			else{
+				origin.attr("opacity", "1")
+			}
  		}
  	})
 
@@ -118,6 +140,20 @@ for(var i=1;i<=5;i++){
 			name: "turnRight",
 			predicate: function(origin){
 				return "aa=A" + origin.attr("id").substring(8)
+			}
+		}]
+	})
+
+}
+
+for(var i=1;i<=4;i++){
+
+	bms.executeEvent({
+		selector: "#runway" + i,
+		events: [{
+			name: "makeAircraft",
+			predicate: function(origin){
+				return "ap=airport(" + origin.attr("id").substring(6) + ")"
 			}
 		}]
 	})
