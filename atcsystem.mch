@@ -28,7 +28,7 @@ INITIALISATION
     
     aircraftInfo := {   
                     A1 |-> rec(hdng : NN, currpos : rec(xx : 3, yy : 3)),
-                    A2 |-> rec(hdng : NN, currpos : rec(xx : 0, yy : 0))
+                    A2 |-> rec(hdng : SS, currpos : rec(xx : 5, yy : 5))
                     }
 
 OPERATIONS
